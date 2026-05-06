@@ -281,7 +281,7 @@ Vous venez de rejoindre l'équipe de maintenance de cette application. Vous disp
 
 ---
 
-## 4. Objectifs Pédagogiques
+## 5. Objectifs Pédagogiques
 
 À la fin de ce lab, vous serez capable de :
 
@@ -627,17 +627,7 @@ BANKDATA est le programme batch d'initialisation des données. Il est critique p
 ### 💬 Prompt Bob
 
 ```
-Analyse le programme base/cobol_src/BANKDATA.cbl et génère une documentation technique complète incluant :
-- Description et objectif du programme
-- Paramètres d'entrée (PARM)
-- Structures de données manipulées
-- Fichiers et tables accédés (VSAM CUSTOMER, DB2 ACCOUNT)
-- Logique de génération des données
-- Copybooks utilisés
-- Règles métier implémentées
-- Diagramme de flux du traitement
-
-Sauvegarde la documentation dans docs/BANKDATA-docu-technique.md
+Génére la documentation du programme BANKDATA
 ```
 
 ### ✅ Résultat Attendu
@@ -973,8 +963,6 @@ Cette documentation est utile pour :
 
 ## Exercice 5 : Analyse des Règles Métier SORTCODE
 
-## Exercice 4 : Analyse des Règles Métier SORTCODE
-
 ### 🎯 Objectif
 
 Analyser en profondeur l'utilisation du SORTCODE (code d'agence bancaire) dans toute l'application.
@@ -1083,9 +1071,9 @@ Créer une documentation du parcours utilisateur pour la consultation des compte
 
 ### 🔧 Mode Bob à Utiliser
 
-**Mode : ❓ Ask**
+**Mode : 🧰 Z Code**
 
-Le mode Ask est parfait pour générer de la documentation orientée utilisateur, non technique et pédagogique.
+Le mode Z Code excelle dans l'analyse de patterns et l'extraction de règles métier enfouies dans le code COBOL.
 
 ### 📝 Contexte
 
@@ -1123,6 +1111,11 @@ Document de 485 lignes contenant :
 | Documentation technique | Documentation métier adaptée |
 | Pas d'exemples visuels | Écrans simulés inclus |
 
+### 📌 Comparer le résultat avec cette variante de prompt :
+### 💬 Prompt Bob
+```
+Peux-tu expliquer (pour un utilisateur métier) la chaîne de programmes qui part de BNKMENU, passe par BNK1CCA puis INQACCCU ?
+```
 ---
 
 ## Exercice 7 : Implémentation de la Recherche par Email
@@ -1133,10 +1126,12 @@ Concevoir et implémenter une nouvelle fonctionnalité permettant d'identifier l
 
 ### 🔧 Mode Bob à Utiliser
 
-**Modes : 📝 Plan → 💻 Code**
+**Modes : 📐 Z Architect → 🧰 Z Code**
 
-- **Plan** : Pour créer le plan d'implémentation détaillé
-- **Code** : Pour générer les structures de données et le code COBOL
+- 📐 Z Architect : Pour définir et planifier la solution complète pour Z/OS
+
+- 🧰 Z Code** : Pour générer le code COBOL pour la nouvelle fonctionnalité
+
 
 ### 📝 Contexte
 
@@ -1150,7 +1145,7 @@ Le métier souhaite moderniser l'application en permettant aux clients d'être i
 
 ### Partie A : Planification de l'Implémentation
 
-#### 🔧 Mode : 📝 Plan
+#### 🔧 Mode : 📐 Z Architect
 
 #### 💬 Prompt Bob
 
@@ -1218,7 +1213,9 @@ Bob crée **`docs/CBSA-plan-email-implementation.md`** (1,324 lignes) :
 
 ### Partie B : Modification des Structures de Données
 
-#### 🔧 Mode : 💻 Code
+**Mode : 🧰 Z Code**
+
+Le mode Z Code excelle dans l'analyse de patterns et l'extraction de règles métier enfouies dans le code COBOL.
 
 #### 💬 Prompt Bob
 
@@ -1336,7 +1333,9 @@ Bob crée/modifie les fichiers dans le répertoire `baseupdated/cobol_copy/` :
 
 ### Partie C : Développement du Programme de Recherche
 
-#### 🔧 Mode : 💻 Code
+#### 🔧 Mode : 🧰 Z Code**
+
+Le mode Z Code excelle dans la génération de code COBOL pour Z/OS.
 
 #### 💬 Prompt Bob
 
@@ -1486,7 +1485,9 @@ GET-ME-OUT-OF-HERE.
 
 ### Partie D : Vérification Syntaxique du Programme
 
-#### 🔧 Mode : 💻 Code
+#### 🔧 Mode : 🧰 Z Code**
+
+Le mode Z Code excelle dans la génération de code COBOL pour Z/OS.
 
 #### 💬 Prompt Bob
 
