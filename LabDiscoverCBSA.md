@@ -14,7 +14,7 @@
 3. [Préparation du Lab](#3-préparation-du-lab)
 4. [Contexte du Lab](#4-contexte-du-lab)
 5. [Objectifs Pédagogiques](#5-objectifs-pédagogiques)
-6. [Exercice 1 : Initialisation et Analyse du Workspace](#exercice-1--initialisation-et-analyse-du-workspace)
+6. [Exercice 1 : Initialisation et Analyse du Workspace](#exercice-1--initialisation-et-analyse-du-workspace-1)
 7. [Exercice 2 : Génération de l'Inventaire Applicatif](#exercice-2--génération-de-linventaire-applicatif)
 8. [Exercice 3 : Création du Diagramme d'Architecture](#exercice-3--création-du-diagramme-darchitecture)
 9. [Exercice 4 : Documentation du Programme BANKDATA](#exercice-4--documentation-du-programme-bankdata)
@@ -260,6 +260,7 @@ Vous venez de rejoindre l'équipe de maintenance de cette application. Vous disp
 ---
 
 ## Exercice 0 : : Définir les Règles de Nommage et d'Organisation
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -355,7 +356,7 @@ Bob met à jour le fichier **`AGENTS.md`** avec une nouvelle règle.
 - Les commentaires dans les outils (`tools/`) doivent être en français
 - Les README et fichiers de documentation doivent être en français
 - Seuls les noms de fichiers, variables et code source peuvent rester en anglais
-'''
+```
 
 ### 🎓 Ce que vous apprenez
 
@@ -393,6 +394,7 @@ Bob met à jour le fichier **`AGENTS.md`** avec une nouvelle règle.
 ---
 
 ## Exercice 1 : Initialisation et Analyse du Workspace
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -534,6 +536,7 @@ Résumé des actions :
 
 ### 🎓 Ce que vous apprenez
 
+- **L'importance de l'initialisation** : Le workspace est le point de départ pour toutes les analyses. Certaines étapes sont indispensables avant d'aller plus loin. Il faut générer les méta-données (cf .bobz/local-settings.json) et le dictionnaire de données (cf bobz/DD.json) popur avoir des analyses de bonnes qualité. 
 - **Gain de temps :** Au lieu de passer 2-3 jours à explorer manuellement le code, Bob analyse tout en quelques minutes
 - **Standardisation :** Les conventions sont établies automatiquement
 - **Documentation vivante :** Le fichier AGENTS.md sert de référence pour toute l'équipe
@@ -543,6 +546,7 @@ Résumé des actions :
 ---
 
 ## Exercice 2 : Génération de l'Inventaire Applicatif
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -621,6 +625,7 @@ Contient :
 ---
 
 ## Exercice 3 : Création du Diagramme d'Architecture
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -688,6 +693,7 @@ Diagramme éditable montrant 4 couches :
 ---
 
 ## Exercice 4 : Documentation du Programme BANKDATA
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -1065,6 +1071,7 @@ Cette documentation est utile pour :
 ---
 
 ## Exercice 5 : Analyse des Règles Métier SORTCODE
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -1135,6 +1142,7 @@ Document de 682 lignes contenant :
 ---
 
 ## Exercice 5 : Analyse d'Impact des Changements
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -1207,6 +1215,7 @@ Document de 782 lignes contenant :
 ---
 
 ## Exercice 6 : Documentation du Parcours Utilisateur
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -1290,6 +1299,7 @@ Peux-tu expliquer (pour un utilisateur métier) la chaîne de programmes qui par
 ---
 
 ## Exercice 7 : Implémentation de la Recherche par Email
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -1768,6 +1778,7 @@ PROCEDURE DIVISION.
 ```
 
 ## 📊 Synthèse et Gains Mesurables
+[↩️](#-table-des-matières)
 
 ### Récapitulatif des Exercices
 
@@ -1813,6 +1824,7 @@ Après ce lab, vous maîtrisez :
 ---
 
 ## Exercice 8 : Automatisation avec Bobshell Premium Z
+[↩️](#-table-des-matières)
 
 ### 🎯 Objectif
 
@@ -2319,6 +2331,7 @@ MAIN-TEST.
 ---
 
 ## Conclusion
+[↩️](#-table-des-matières)
 
 ### 🎉 Félicitations !
 
@@ -2634,9 +2647,5 @@ Propose une stratégie de migration pour [SYSTÈME]
 - **Formations** : Sessions de formation avancées
 
 ---
-
-**Version** : 1.0  
-**Date** : 5 mai 2026  
-**Auteur** : Bob Premium for Z
 
 **Transformez votre façon de travailler avec le mainframe ! 🚀**
