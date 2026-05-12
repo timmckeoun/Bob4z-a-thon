@@ -2,7 +2,10 @@
 
 ## Vue d'ensemble du Lab
 
-Ce lab vous guide à travers une analyse complète de l'application **CICS Banking Sample Application (CBSA)** en utilisant **Bob pour Z**, l'assistant IA spécialisé pour les systèmes mainframe IBM Z. Vous apprendrez à utiliser différents modes de Bob et à formuler des prompts efficaces pour obtenir des analyses détaillées, de la documentation et des diagrammes d'architecture.
+Ce lab vous guide à travers une analyse complète de l'application **CICS Banking Sample Application (CBSA)** en utilisant **Bob pour Z**,
+l'assistant IA spécialisé pour les systèmes mainframe IBM Z. 
+En complément du LabDiscoverCBSA, ce lab intègre en plus la partie front-end (Java, React, API,....).
+Vous apprendrez à utiliser différents modes de Bob et à formuler des prompts efficaces pour obtenir des analyses détaillées, de la documentation et des diagrammes d'architecture.
 
 ---
 
