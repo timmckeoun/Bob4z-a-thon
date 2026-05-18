@@ -727,7 +727,7 @@ Rédigez votre propre prompt pour demander une documentation technique complète
 ### ✅ Prompt Recommandé
 
 ```text
-Explique le pgm Bankdata BANKDATA
+Explique le pgm BANKDATA
 ```
 
 ### 🔀 Variantes de Prompt
@@ -1562,9 +1562,9 @@ Bob crée/modifie les fichiers dans le répertoire `baseupdated/cobol_copy/` :
            05  UPD-RESP-MESSAGE                  PIC X(79).
 ```
 
-**5. INCUSTM.cpy** (nouveau - COMMAREA recherche email)
+**5. INQEMAIL.cpy** (nouveau - COMMAREA recherche email)
 ```cobol
-       01  INCUSTM-COMMAREA.
+       01  INQEMAIL-COMMAREA.
            05  COMM-EMAIL                        PIC X(100).
            05  COMM-SORTCODE                     PIC 9(6).
            05  COMM-CUSTNO                       PIC 9(10).
@@ -1691,12 +1691,12 @@ HANDLE-SYSTEM-ERROR.
 **Structure complète du programme** :
 ```cobol
 IDENTIFICATION DIVISION.
-PROGRAM-ID. INCUSTM.
+PROGRAM-ID. INQEMAIL.
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.
 01  WS-COMMAREA.
-    COPY INCUSTM.
+    COPY INQEMAIL.
 
 01  CUSTOMER-RECORD.
     COPY CUSTOMER.
@@ -1760,7 +1760,7 @@ Le mode Z Code excelle dans la génération de code COBOL pour Z/OS.
 #### 💬 Prompt Bob
 
 ```
-Vérifie la syntaxe du programme INCUSTM.cbl
+Vérifie la syntaxe du programme INQEMAIL.cbl
 ```
 
 #### ✅ Résultat Attendu
@@ -1776,7 +1776,7 @@ Bob effectue une **vérification syntaxique complète** du programme généré :
    - ✅ Sections et paragraphes bien définis
 
 2. **Vérification des copybooks**
-   - ✅ `COPY INCUSTM` - COMMAREA d'entrée/sortie
+   - ✅ `COPY INQEMAIL` - COMMAREA d'entrée/sortie
    - ✅ `COPY CUSTOMER` - Structure enregistrement client
    - ✅ `COPY ABNDINFO` - Structure gestion d'erreur
    - ✅ Tous les copybooks existent dans `baseupdated/cobol_copy/`
@@ -1809,7 +1809,7 @@ Bob effectue une **vérification syntaxique complète** du programme généré :
 
 ```
 ╔════════════════════════════════════════════════════════════╗
-║  VÉRIFICATION SYNTAXIQUE - INCUSTM.cbl                  ║
+║  VÉRIFICATION SYNTAXIQUE - INQEMAIL.cbl                  ║
 ╠════════════════════════════════════════════════════════════╣
 ║  Statut : ✅ SUCCÈS - Aucune erreur détectée               ║
 ║                                                            ║
@@ -1840,7 +1840,7 @@ Bob effectue une **vérification syntaxique complète** du programme généré :
 //STEPLIB  DD DSN=IGY.V6R3M0.SIGYCOMP,DISP=SHR
 //SYSPRINT DD SYSOUT=*
 //SYSLIN   DD DSN=&&LOADSET,DISP=(MOD,PASS),SPACE=(CYL,(1,1))
-//SYSIN    DD DSN=CBSA.COBOL.SOURCE(INCUSTM),DISP=SHR
+//SYSIN    DD DSN=CBSA.COBOL.SOURCE(INQEMAIL),DISP=SHR
 ```
 
 **Tests de compilation** :
@@ -1849,7 +1849,7 @@ Bob peut également générer un script de test :
 
 ```cobol
 *================================================================*
-* PROGRAMME DE TEST UNITAIRE - INCUSTM
+* PROGRAMME DE TEST UNITAIRE - INQEMAIL
 *================================================================*
 IDENTIFICATION DIVISION.
 PROGRAM-ID. TESTINQE.
@@ -1857,7 +1857,7 @@ PROGRAM-ID. TESTINQE.
 DATA DIVISION.
 WORKING-STORAGE SECTION.
 01  TEST-COMMAREA.
-    COPY INCUSTM.
+    COPY INQEMAIL.
 
 PROCEDURE DIVISION.
 
@@ -2335,7 +2335,7 @@ filter:
 MAIN-TEST.
     * Test 1 : Email valide existant
     MOVE 'jean.dupont@example.com' TO COMM-EMAIL
-    EXEC CICS LINK PROGRAM('INCUSTM')
+    EXEC CICS LINK PROGRAM('INQEMAIL')
          COMMAREA(TEST-COMMAREA)
          LENGTH(LENGTH OF TEST-COMMAREA)
     END-EXEC
@@ -2348,7 +2348,7 @@ MAIN-TEST.
     
     * Test 2 : Email invalide (pas de @)
     MOVE 'invalidemail.com' TO COMM-EMAIL
-    EXEC CICS LINK PROGRAM('INCUSTM')
+    EXEC CICS LINK PROGRAM('INQEMAIL')
          COMMAREA(TEST-COMMAREA)
          LENGTH(LENGTH OF TEST-COMMAREA)
     END-EXEC
@@ -2361,7 +2361,7 @@ MAIN-TEST.
     
     * Test 3 : Email non trouvé
     MOVE 'inconnu@example.com' TO COMM-EMAIL
-    EXEC CICS LINK PROGRAM('INCUSTM')
+    EXEC CICS LINK PROGRAM('INQEMAIL')
          COMMAREA(TEST-COMMAREA)
          LENGTH(LENGTH OF TEST-COMMAREA)
     END-EXEC
