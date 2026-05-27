@@ -2,7 +2,7 @@
 
 ## Objectif
 
-Ce lab démontre l'utilisation du skill **Bob Premium for Z** pour générer des programmes COBOL conformes aux standards IBM Enterprise COBOL pour z/OS avec CICS, puis valider automatiquement la syntaxe avec Z Open Editor.
+Ce lab démontre l'utilisation du skill **Bob Premium for Z** pour générer des programmes COBOL conformes aux standards IBM Enterprise COBOL pour z/OS avec CICS, puis valider automatiquement la syntaxe avec **Z Open Editor**. Dans Z Open Editor, vous pouvez ouvrir le fichier généré et valider la syntaxe directement dans l'éditeur. Vous avez la possibilité de modifier les règles syntaxique en configurant les règles zCodeScan (https://www.ibm.com/docs/en/developer-for-zos/17.0.x?topic=overview-linting-zcodescan).
 
 ## Prérequis
 
@@ -10,12 +10,32 @@ Ce lab démontre l'utilisation du skill **Bob Premium for Z** pour générer des
 - Workspace CBSA ouvert
 - Skill `cobol-generator-validator` disponible dans `.bob/skills/`
 
-## Création du Skill
+## Définition des standards de coding
 
-### Demande
+Avant de générer le Skill, nous allons définir les standards de coding pour le langage COBOL à partir de l'existant.
+
+### Prompt Bob
+```text
+définit les standard de coding COBOL en analysant les programmes COBOL existants.
+```
+### Résultat
+Standards de codage COBOL définis dans **docs/GLOBAL-docu-standards-cobol.md**.
+
+Standards dérivés de l’analyse des programmes BNKMENU, BNK1CAC, CREACC, ABNDPROC et BANKDATA
+Règles formalisées sur structure des programmes, nommage, copybooks, gestion CICS/SQL, abends, validations et accès aux données
+
+
+
+## Création du Skill
+Nous allons utiliser le skill builder pour créer un skill Bob Premium for Z qui permettra de générer un programme COBOL et de le valider en fonction des standards de coding et d'en valider la syntaxe avec Z Open Editor.
+
+
+### Prompt Bob
 
 ```text
-Crée un skill Bob Premium for Z, à l'aide du skill builder, qui permet de générer un programme COBOL puis de vérifier à l'aide de Z Open Editor, la syntaxe et le standard du COBOL généré. Les erreurs de syntaxe devront être corrigées par Bob.
+Crée un skill Bob Premium for Z, à l'aide du skill builder, qui permet de 
+- générer un programme COBOL qui respecte les standards de coding définis dans docs/GLOBAL-docu-standards-cobol.md
+- puis de vérifier à l'aide de Z Open Editor, la syntaxe et le standard du COBOL généré. Les erreurs de syntaxe devront être corrigées par Bob.
 ```
 ### Résultat
 
