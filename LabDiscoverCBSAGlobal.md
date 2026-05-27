@@ -4,7 +4,7 @@
 
 Ce lab vous guide à travers une analyse complète de l'application **CICS Banking Sample Application (CBSA)** en utilisant **Bob pour Z**,
 l'assistant IA spécialisé pour les systèmes mainframe IBM Z. 
-En complément du LabDiscoverCBSA, ce lab intègre en plus la partie front-end (Java, React, API,....).
+En complément du **LabDiscoverCBSA**, ce lab intègre en plus la partie front-end (Java, React, API,....).
 Vous apprendrez à utiliser différents modes de Bob et à formuler des prompts efficaces pour obtenir des analyses détaillées, de la documentation et des diagrammes d'architecture.
 
 ---
@@ -12,7 +12,7 @@ Vous apprendrez à utiliser différents modes de Bob et à formuler des prompts 
 ## Prérequis
 
 - ✅ VSCode avec l'extension **IBM Bob Premium Package for Z** installée
-- ✅ Projet CBSA cloné localement
+- ✅ Projet CBSA cloné localement (cf **LabDiscoverCBSA**)
 - ✅ Accès au mode **Z Code** de Bob
 - ✅ Connaissance de base de COBOL, JCL et architecture mainframe (recommandé mais non obligatoire)
 
@@ -80,7 +80,12 @@ mkdir -p ./src && cp -r /tmp/cbsa-temp/src/bank-application-frontend /tmp/cbsa-t
 
 **Console de sortie** :
 ```
-Les répertoire "src/*" du repository GitHub a été récupéré avec succès dans le workspace.
+Les 5 répertoires suivants ont été récupérés depuis le repository GitHub et placés dans le workspace :
+1.	bank-application-frontend/ - Application frontend bancaire
+2.	webui/ - Interface web utilisateur
+3.	Z-OS-Connect-Customer-Services-Interface/ - Interface z/OS Connect pour les services clients
+4.	Z-OS-Connect-Payment-Interface/ - Interface z/OS Connect pour les paiements
+5.	zosconnect_artefacts/ - Artefacts z/OS Connect
 
 
 ```
@@ -105,7 +110,8 @@ Avant de commencer le lab, assurez-vous d'avoir :
 
 ### 🎯 Vous êtes prêt !
 
-Une fois le workspace préparé avec Bob, vous pouvez commencer l'Exercice 1.
+Une fois le workspace préparé avec Bob, si vous avez déjà fait le LabDicoverCBSA dans cet espace de travail,  vous pouvez commencer directement à <a name="exercice-4">l'exercice 4 Inventaire du Frontend</a>.
+Sinon commencez à l'Exercice 1. 
 
 <a name="exercice-1"></a>
 ## Exercice 1 : Initialisation et Création du Fichier AGENTS.md
@@ -119,7 +125,7 @@ Créer un fichier AGENTS.md qui documente la structure du projet, les commandes 
 
 ### Prompt Recommandé
 ```
-init
+/init
 ```
 
 ### Ce que Bob va Faire
