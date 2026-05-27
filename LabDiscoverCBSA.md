@@ -14,21 +14,23 @@
 3. [Préparation du Lab](#3-préparation-du-lab)
 4. [Contexte du Lab](#4-contexte-du-lab)
 5. [Objectifs Pédagogiques](#5-objectifs-pédagogiques)
-6. [Exercice 1 : Initialisation et Analyse du Workspace](#exercice-1--initialisation-et-analyse-du-workspace-1)
-7. [Exercice 2 : Génération de l'Inventaire Applicatif](#exercice-2--génération-de-linventaire-applicatif)
-8. [Exercice 3 : Création du Diagramme d'Architecture](#exercice-3--création-du-diagramme-darchitecture)
-9. [Exercice 4 : Documentation du Programme BANKDATA](#exercice-4--documentation-du-programme-bankdata)
-10. [Exercice 5 : Analyse des Règles Métier SORTCODE](#exercice-5--analyse-des-règles-métier-sortcode)
-11. [Exercice 6 : Analyse d'Impact des Changements](#exercice-5--analyse-dimpact-des-changements)
-12. [Exercice 7 : Documentation du Parcours Utilisateur](#exercice-6--documentation-du-parcours-utilisateur)
-13. [Exercice 8 : Implémentation de la Recherche par Email](#exercice-7--implémentation-de-la-recherche-par-email)
-14. [Exercice 9 : Automatisation avec Bobshell Premium Z](#exercice-8--automatisation-avec-bobshell-premium-z)
-15. [Synthèse et Gains Mesurables](#-synthèse-et-gains-mesurables)
+6. [Exercice 0 : Définir les Règles de Nommage et d'Organisation](#exercice-0--définir-les-règles-de-nommage-et-dorganisation)
+7. [Exercice 1 : Initialisation et Analyse du Workspace](#exercice-1--initialisation-et-analyse-du-workspace)
+8. [Exercice 2 : Génération de l'Inventaire Applicatif](#exercice-2--génération-de-linventaire-applicatif)
+9. [Exercice 3 : Création du Diagramme d'Architecture](#exercice-3--création-du-diagramme-darchitecture)
+10. [Exercice 4 : Documentation du Programme BANKDATA](#exercice-4--documentation-du-programme-bankdata)
+11. [Exercice 5 : Analyse des Règles Métier](#exercice-5--analyse-des-règles-métier)
+12. [Exercice 6 : Analyse d'Impact des Changements](#exercice-6--analyse-dimpact-des-changements)
+13. [Exercice 7 : Documentation du Parcours Utilisateur](#exercice-7--documentation-du-parcours-utilisateur)
+14. [Exercice 8 : Implémentation de la Recherche par Email](#exercice-8--implémentation-de-la-recherche-par-email)
+15. [Exercice 9 : Automatisation avec Bobshell Premium Z](#exercice-9--automatisation-avec-bobshell-premium-z)
+16. [Synthèse et Gains Mesurables](#-synthèse-et-gains-mesurables)
+17. [Conclusion](#7conclusion)
 
 ---
 
 ## 1. Introduction
-
+[↩️](#-table-des-matières)
 ### Qu'est-ce que Bob Premium for Z ?
 
 **Bob Premium for Z** est un assistant IA spécialisé dans l'analyse, la documentation et la modernisation des applications mainframe IBM Z. Il combine :
@@ -52,7 +54,7 @@ Ce lab vous permettra de découvrir concrètement comment Bob Premium for Z peut
 ---
 
 ## 2. Les Modes de Bob Premium for Z
-
+[↩️](#-table-des-matières)
 Bob Premium for Z propose plusieurs modes spécialisés pour différents types de tâches :
 
 ### 🧰 Z Code
@@ -127,10 +129,21 @@ Bob Premium for Z propose plusieurs modes spécialisés pour différents types d
 
 
 ## 3. Préparation du Lab
-
+[↩️](#-table-des-matières)
 ### 🎯 Objectif
 
 Récupérer le code source de l'application CBSA depuis GitHub et préparer le workspace pour le lab.
+
+### 🎯 Prérequis
+
+- avoir installé IBM Bob sur une station de travail (MacOS, Linux ou MSWindows)
+- avoir installé les extensions suivantes:
+    - Zowe Explorer 3.5.0 (ou plus)
+    - IBM Z Open Editor 6.5.0 (ou plus)
+    - IBM Bob Premium Package for Z 0.2.1 (ou plus)
+    - Mermaid (dervière version)
+    - Draw.io Integration (dernière version)
+
 
 ### 🔧 Mode Bob à Utiliser
 
@@ -150,6 +163,12 @@ Ouvrir Bob, cliquer sur le menu **File>Open Folder** et choisissez le répertoir
 Récupère le répertoire nommé "src/base" du repository GitHub https://github.com/cicsdev/cics-banking-sample-application-cbsa.git et place le dans ce workspace.
 ```
 
+#### Alternative
+```
+Récupère le répertoire nommé "src/base" du repository GitHub https://github.com/cicsdev/cics-banking-sample-application-cbsa.git et place le dans un nouveau dossier nommé CBSA dans ma home directory"
+```
+
+
 ### ✅ Résultat Attendu 
 
 Bob exécute les commandes suivantes :
@@ -166,7 +185,7 @@ rm -rf temp_repo
 
 **Console de sortie** :
 ```
-Le répertoire "src/base" du repository GitHub a été récupéré avec succès dans le workspace.
+Le répertoire "src/base" du repository GitHub a été récupéré avec succès dans le répertoire CBSA.
 
 Contenu récupéré :
 
@@ -202,7 +221,7 @@ Une fois le workspace préparé avec Bob, vous pouvez commencer l'Exercice 1.
 ---
 
 ## 4. Contexte du Lab
-
+[↩️](#-table-des-matières)
 ### L'Application : CICS Banking Sample Application (CBSA)
 
 Vous allez travailler sur une application bancaire réelle qui simule les opérations d'un guichet bancaire :
@@ -223,8 +242,8 @@ Vous allez travailler sur une application bancaire réelle qui simule les opéra
 - Simulation d'agences de crédit externes
 
 **Complexité :**
-- 28 programmes COBOL
-- 38 copybooks
+- 29 programmes COBOL
+- 37 copybooks
 - 9 écrans BMS
 - 4 tables Db2
 - Architecture multi-couches (présentation, logique métier, données)
@@ -242,10 +261,18 @@ Vous venez de rejoindre l'équipe de maintenance de cette application. Vous disp
 
 **Votre mission :** Utiliser Bob Premium for Z pour analyser et documenter cette application en quelques heures au lieu de plusieurs semaines.
 
+### Remarques liminaires
+
+
+- <span style="color: red;">Bob s'appuie sur l'agentique IA, qui par définition n'est pas déterministe. Pour certains exercices, vous pourrez donc constater de lègères différences entre votre résulat et celui décrit dans ces lab. Et certaines fois, vous aurez à ajouter des instructions supplémentaires à Bob pour obtenir le résultat attendu. C'est, de manière générale, l'approche qui faut avoir avec Bob: il arrive toujours au résultat, mais il faut parfois prendre un chemin différent pour y arriver.</span>
+- **Les décomptes faits par IA peuvent s'avérer inexactes. Il faut donc privilégier les calculs pas l'inginiérie plutôt que par l'IA.**
+- IBM Bob premium for Z s'appuie sur des méta données déjà existantes ou qu'il construit dans une BDD locale. Dans la discussion avec Bob, il pourra éventuellement demander s'il faut utiliser un repo centralisé des méta données (ex: Souhaitez-vous utiliser le service Z Understand pour une analyse complète des dépendances, ou analyser uniquement l'espace de travail local ?). **Dans le cadre de ce lab, nous n'utilisons pas de service Z Understand.** 
+
+
 ---
 
 ## 5. Objectifs Pédagogiques
-
+[↩️](#-table-des-matières)
 À la fin de ce lab, vous serez capable de :
 
 ✅ **Initialiser** un workspace mainframe avec Bob Premium for Z  
@@ -259,7 +286,7 @@ Vous venez de rejoindre l'équipe de maintenance de cette application. Vous disp
 
 ---
 
-## Exercice 0 : : Définir les Règles de Nommage et d'Organisation
+## Exercice 0 : Définir les Règles de Nommage et d'Organisation
 [↩️](#-table-des-matières)
 
 ### 🎯 Objectif
@@ -316,9 +343,14 @@ Bob met à jour le fichier **`AGENTS.md`** avec une section dédiée aux convent
   - `bms_src/` : Définitions d'écrans BMS
 
 ## Conventions de Nommage des Documents
+...
 
 ```
-### ✍️ Votre Prompt
+
+#### Remarque :
+Bob peut créer les règles dans le fichier .bob/rules.md plutôt que dans AGENTS.md. Il prendra en compte les règles de la même manière, qu'il soit dans un fichier ou dans l'autre
+
+### ✍️ Votre Prompt pour compléter les règles. 
 
 Rédigez votre propre prompt pour demander à Bob d'ajouter une règle globale de génération documentaire en français.
 
@@ -330,7 +362,13 @@ Rédigez votre propre prompt pour demander à Bob d'ajouter une règle globale d
 ### ✅ Prompt Recommandé
 
 ```text
-Ajoute une règle Bob : génére les documentations en français
+Ajoute une règle Bob : génére les documentations en français et réponds<img width="468" height="25" alt="image" src="https://github.com/user-attachments/assets/b39301bc-a81d-4e99-9d37-80f4e027d0ab" />
+<img width="468" height="25" alt="image" src="https://github.com/user-attachments/assets/0457dcd2-8432-40a5-8b83-55815d9c84fd" />
+<img width="468" height="25" alt="image" src="https://github.com/user-attachments/assets/95418bea-9627-4bf1-9f21-fe4e4924186c" />
+<img width="468" height="25" alt="image" src="https://github.com/user-attachments/assets/254066e2-8b15-4cc0-bce0-631fae5466a3" />
+<img width="468" height="25" alt="image" src="https://github.com/user-attachments/assets/83ff5ad2-0ef0-4f67-a430-8fe34e7dedfd" />
+<img width="468" height="25" alt="image" src="https://github.com/user-attachments/assets/c59da4c4-8e4a-43c2-abb7-49014ed65e20" />
+ en français. 
 ```
 
 ### 🔀 Variantes de Prompt
@@ -360,7 +398,7 @@ Bob met à jour le fichier **`AGENTS.md`** avec une nouvelle règle.
 
 ### 🎓 Ce que vous apprenez
 
-- **Agents.md** fournit les règles qui seront appliquées au workspace.
+- **Agents.md** (ou **.bob/rules.md**) fournit les règles qui seront appliquées au workspace.
 
 - **Organisation structurée :** Un workspace bien organisé facilite la navigation et la maintenance
 - **Conventions claires :** Des règles de nommage cohérentes permettent de retrouver rapidement les documents
@@ -429,7 +467,7 @@ Rédigez votre propre prompt pour demander à Bob d'initialiser et d'analyser co
 ### ✅ Prompt Recommandé
 
 ```text
-init
+/init
 ```
 
 **Note :** La commande `init` est une commande spéciale de Bob Premium for Z qui déclenche une analyse complète du workspace.
@@ -459,11 +497,12 @@ Bob va :
 
 ### ✅ Résultat Attendu
 
+
 **Fichiers modifiés :**
 
 1. **`AGENTS.md`** (racine du workspace)
 
-### ✍️ Votre Prompt
+### ✍️ Votre Prompt pour générer le dictionnaire de données
 
 Rédigez votre propre prompt pour demander à Bob de générer le dictionnaire de données. Il devrait à cette occasion extraire les méta-données des programmes de l'application pour les stocker dans une BDD locale. 
 
@@ -479,9 +518,9 @@ Crée le dictionnaire de données de l'application
 
 Bob va utiliser des ***Skill*** et ***tools*** spécifiques du ***Premium package for Z***. Il va :
 - Vérifier l'existence de .bobz/local-settings.json et de la base de données
-- Scanner les programmes COBOL si nécessaire
+- **Scanner les programmes COBOL si nécessaire**
 - Extraire les variables des programmes
-- Créer le dictionnaire de données DD.json
+- **Créer le dictionnaire de données DD.json**
 - Mettre à jour AGENTS.md avec l'emplacement du dictionnaire
 
 
@@ -677,8 +716,11 @@ Modifie le diagramme avec des liens droits (non orthogonaux).
 ```text
 Dans le diagramme, distingue les différents types d'accès (SELECT, INSERT, DELETE, UPDATE) sur les tables, par des couleurs distinctes.
 ```
+```text
+change @docs/CBSA-archi-dependances.drawio pour que tous les textes soient écrits en noir
+```
 
-Comparer ce résultat à celui du prompt :
+**Comparer ce résultat à celui du prompt :**
 
 ```text
 génére un graphe d'appel des programmes
@@ -1107,7 +1149,7 @@ Commencer par identifier les variables d'un programme. Puis, affiner la descript
 ### ✅ Prompt Recommandé
 
 ```text
-Quels sont les variables utilisées dans INQACCCU?
+Quelles sont les variables utilisées dans INQACCCU?
 ```
 
 ### ✅ Résultat Attendu
@@ -1133,7 +1175,7 @@ Fichier mis à jour : /Users/ovallod/Library/CloudStorage/Box-Box/OV_IBM/Lab/bob
 
 Le dictionnaire de données contient maintenant les définitions métier pour les programmes BANKDATA et INQACCCU.
 
-### ✅ Prompt Recommandé
+### ✅ Prompt pour continuer l'analyse :
 
 ```text
 Comment est utilisée la variable SORTCODE dans l'application?
@@ -1206,7 +1248,7 @@ Distribution : Retourne le SORTCODE aux programmes appelants via COMMAREA
 
 ---
 
-## Exercice 5 : Analyse d'Impact des Changements
+## Exercice 6 : Analyse d'Impact des Changements
 [↩️](#-table-des-matières)
 
 ### 🎯 Objectif
@@ -1304,7 +1346,7 @@ Transformer l'application CBSA d'une architecture **mono-agence** (SORTCODE fixe
 ```
 ---
 
-## Exercice 6 : Documentation du Parcours Utilisateur
+## Exercice 7 : Documentation du Parcours Utilisateur
 [↩️](#-table-des-matières)
 
 ### 🎯 Objectif
@@ -1388,7 +1430,7 @@ Peux-tu expliquer (pour un utilisateur métier) la chaîne de programmes qui par
 ```
 ---
 
-## Exercice 7 : Implémentation de la Recherche par Email
+## Exercice 8 : Implémentation de la Recherche par Email
 [↩️](#-table-des-matières)
 
 ### 🎯 Objectif
@@ -1864,53 +1906,8 @@ PROCEDURE DIVISION.
 ---
 ```
 
-## 📊 Synthèse et Gains Mesurables
-[↩️](#-table-des-matières)
 
-### Récapitulatif des Exercices
-
-| Exercice | Tâche | Temps Manuel | Temps Bob | Gain |
-|----------|-------|--------------|-----------|------|
-| 1 | Analyse architecture complète | 2-3 jours | 5 minutes | 99% |
-| 2 | Documentation flux métier | 1 jour | 3 minutes | 99.7% |
-| 3 | Analyse d'impact SORTCODE | 3-4 jours | 8 minutes | 99% |
-| 4 | Identification numéro client | 2 jours | 4 minutes | 99.6% |
-| 5 | Suggestions d'amélioration | 1-2 jours | 6 minutes | 99.5% |
-| 6 | Diagramme de dépendances | 2 jours | 5 minutes | 99.7% |
-| 7 | Implémentation email complète | 3-4 semaines | 45 minutes | 99.8% |
-| 8 | Documentation 28 programmes | 2-3 semaines | 3 minutes | 99.8% |
-| **TOTAL** | **8-10 semaines** | **~2 heures** | **99.5%** |
-
-### ROI Bob Premium for Z
-
-**Investissement** :
-- Licence Bob Premium for Z : $X/mois
-- Formation initiale : 1 jour (ce lab)
-
-**Gains mesurés** :
-- **Temps** : 8-10 semaines → 2 heures (99.5% de réduction)
-- **Coût** : $80,000 - $120,000 → $2,000 (98% de réduction)
-- **Qualité** : Documentation standardisée et complète
-- **Maintenance** : Automatisation des mises à jour
-
-**Retour sur investissement** : Dès le premier projet d'analyse
-
-### Compétences Acquises
-
-Après ce lab, vous maîtrisez :
-
-1. ✅ **Analyse d'architecture** avec Bob Premium for Z
-2. ✅ **Documentation automatique** de flux métier
-3. ✅ **Analyse d'impact** sur code legacy
-4. ✅ **Identification de patterns** dans le code
-5. ✅ **Suggestions d'amélioration** basées sur l'IA
-6. ✅ **Génération de diagrammes** techniques
-7. ✅ **Implémentation complète** de nouvelles fonctionnalités
-8. ✅ **Automatisation** avec Bobshells
-
----
-
-## Exercice 8 : Automatisation avec Bobshell Premium Z
+## Exercice 9 : Automatisation avec Bobshell Premium Z
 [↩️](#-table-des-matières)
 
 ### 🎯 Objectif
@@ -2330,94 +2327,55 @@ filter:
   exclude_pattern: "TEST*.cbl"  # Exclure les tests
 ```
 
+
 ---
+## 6.📊 Synthèse et Gains Mesurables
+[↩️](#-table-des-matières)
 
-MAIN-TEST.
-    * Test 1 : Email valide existant
-    MOVE 'jean.dupont@example.com' TO COMM-EMAIL
-    EXEC CICS LINK PROGRAM('INQEMAIL')
-         COMMAREA(TEST-COMMAREA)
-         LENGTH(LENGTH OF TEST-COMMAREA)
-    END-EXEC
-    
-    IF COMM-RESP-CODE = '0'
-       DISPLAY 'Test 1 : PASS - Client trouvé'
-    ELSE
-       DISPLAY 'Test 1 : FAIL - ' COMM-RESP-MESSAGE
-    END-IF
-    
-    * Test 2 : Email invalide (pas de @)
-    MOVE 'invalidemail.com' TO COMM-EMAIL
-    EXEC CICS LINK PROGRAM('INQEMAIL')
-         COMMAREA(TEST-COMMAREA)
-         LENGTH(LENGTH OF TEST-COMMAREA)
-    END-EXEC
-    
-    IF COMM-RESP-CODE = '3'
-       DISPLAY 'Test 2 : PASS - Format invalide détecté'
-    ELSE
-       DISPLAY 'Test 2 : FAIL - Validation incorrecte'
-    END-IF
-    
-    * Test 3 : Email non trouvé
-    MOVE 'inconnu@example.com' TO COMM-EMAIL
-    EXEC CICS LINK PROGRAM('INQEMAIL')
-         COMMAREA(TEST-COMMAREA)
-         LENGTH(LENGTH OF TEST-COMMAREA)
-    END-EXEC
-    
-    IF COMM-RESP-CODE = '1'
-       DISPLAY 'Test 3 : PASS - Email non trouvé'
-    ELSE
-       DISPLAY 'Test 3 : FAIL - Résultat inattendu'
-    END-IF
-    
-    STOP RUN.
-```
+### Récapitulatif des Exercices
 
-#### 🎓 Ce que vous apprenez
+| Exercice | Tâche | Temps Manuel | Temps Bob | Gain |
+|----------|-------|--------------|-----------|------|
+| 1 | Analyse architecture complète | 2-3 jours | 5 minutes | 99% |
+| 2 | Documentation flux métier | 1 jour | 3 minutes | 99.7% |
+| 3 | Analyse d'impact SORTCODE | 3-4 jours | 8 minutes | 99% |
+| 4 | Identification numéro client | 2 jours | 4 minutes | 99.6% |
+| 5 | Suggestions d'amélioration | 1-2 jours | 6 minutes | 99.5% |
+| 6 | Diagramme de dépendances | 2 jours | 5 minutes | 99.7% |
+| 7 | Implémentation email complète | 3-4 semaines | 45 minutes | 99.8% |
+| 8 | Documentation 28 programmes | 2-3 semaines | 3 minutes | 99.8% |
+| **TOTAL** | **8-10 semaines** | **~2 heures** | **99.5%** |
 
-- **Validation automatique** : Bob vérifie la syntaxe avant compilation
-- **Détection précoce** : Les erreurs sont identifiées immédiatement
-- **Standards respectés** : Le code généré suit les conventions
-- **Prêt pour production** : Code compilable sans modification
-- **Tests inclus** : Scripts de test générés automatiquement
+### ROI Bob Premium for Z
 
-#### 💡 Avantages de la Vérification
+**Investissement** :
+- Licence Bob Premium for Z : $X/mois
+- Formation initiale : 1 jour (ce lab)
 
-| Aspect | Sans vérification | Avec Bob |
-|--------|-------------------|----------|
-| **Détection erreurs** | À la compilation (tard) | Immédiate (tôt) |
-| **Temps de correction** | 30-60 minutes | 2-5 minutes |
-| **Qualité du code** | Variable | Standardisée |
-| **Confiance** | Faible (incertitude) | Élevée (validé) |
-| **Coût** | Élevé (cycles compilation) | Faible (pré-validation) |
+**Gains mesurés** :
+- **Temps** : 8-10 semaines → 2 heures (99.5% de réduction)
+- **Coût** : $80,000 - $120,000 → $2,000 (98% de réduction)
+- **Qualité** : Documentation standardisée et complète
+- **Maintenance** : Automatisation des mises à jour
 
-**Gain** : **90% de réduction du temps de débogage**
+**Retour sur investissement** : Dès le premier projet d'analyse
 
-- **Développement automatique** : Programme complet généré en 30 minutes vs 2-3 jours
-- **Qualité du code** : Respect des standards COBOL et patterns existants
-- **Gestion d'erreur** : Intégration avec ABNDPROC existant
-- **Testabilité** : Structure modulaire facile à tester
+### Compétences Acquises
+
+Après ce lab, vous maîtrisez :
+
+1. ✅ **Analyse d'architecture** avec Bob Premium for Z
+2. ✅ **Documentation automatique** de flux métier
+3. ✅ **Analyse d'impact** sur code legacy
+4. ✅ **Identification de patterns** dans le code
+5. ✅ **Suggestions d'amélioration** basées sur l'IA
+6. ✅ **Génération de diagrammes** techniques
+7. ✅ **Implémentation complète** de nouvelles fonctionnalités
+8. ✅ **Automatisation** avec Bobshells
 
 ---
 
-### 💡 Valeur Ajoutée Bob Premium for Z
-
-| Aspect | Sans Bob | Avec Bob Premium for Z |
-|--------|----------|------------------------|
-| **Planification** | 1-2 semaines d'étude | 20 minutes d'analyse |
-| **Structures** | 1 jour de modifications | 10 minutes de génération |
-| **Développement** | 2-3 jours de code | 30 minutes de génération |
-| **Documentation** | Souvent incomplète | Automatique et exhaustive |
-| **Qualité** | Variable selon développeur | Cohérente et standardisée |
-| **Total** | 2-3 semaines | 1 heure |
-
-**Gain global** : **95-98% de réduction du temps**
-
----
-
-## Conclusion
+## 7.Conclusion
 [↩️](#-table-des-matières)
 
 ### 🎉 Félicitations !
