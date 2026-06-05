@@ -19,13 +19,14 @@
 8. [Exercise 2: Application Inventory Generation](#exercise-2-application-inventory-generation)
 9. [Exercise 3: Architecture Diagram Creation](#exercise-3-architecture-diagram-creation)
 10. [Exercise 4: BANKDATA Program Documentation](#exercise-4-bankdata-program-documentation)
-11. [Exercise 5: Business Rules Analysis](#exercise-5-business-rules-analysis)
-12. [Exercise 6: Change Impact Analysis](#exercise-6-change-impact-analysis)
-13. [Exercise 7: User Journey Documentation](#exercise-7-user-journey-documentation)
-14. [Exercise 8: Email Search Implementation](#exercise-8-email-search-implementation)
-15. [Exercise 9: Automation with Bobshell Premium Z](#exercise-9-automation-with-bobshell-premium-z)
-16. [Summary and Measurable Gains](#summary-and-measurable-gains)
-17. [Conclusion](#7conclusion)
+11. [Exercise 5a: Business Rules Analysis](#exercise-5a-business-rules-analysis)
+12. [Exercise 5b: Business Rules Analysis and inline code generation](#exercise-5b-business-rules-analysis-and-inline-code-generation)
+13. [Exercise 6: Change Impact Analysis](#exercise-6-change-impact-analysis)
+14. [Exercise 7: User Journey Documentation](#exercise-7-user-journey-documentation)
+15. [Exercise 8: Email Search Implementation](#exercise-8-email-search-implementation)
+16. [Exercise 9: Automation with Bobshell Premium Z](#exercise-9-automation-with-bobshell-premium-z)
+17. [Summary and Measurable Gains](#summary-and-measurable-gains)
+18. [Conclusion](#7conclusion)
 
 ---
 
@@ -1750,7 +1751,7 @@ This documentation is useful for:
 
 ---
 
-## Exercise 5: Business Rules Analysis
+## Exercise 5a: Business Rules Analysis
 [↩️](#-table-of-contents)
 
 ### 🎯 Objective
@@ -1878,6 +1879,85 @@ Distribution: Returns SORTCODE to calling programs via COMMAREA
 ***Current Value***
 
 ***987654*** - Branch code used for CBSA application test/demonstration environment.
+
+---
+## Exercise 5b: Business Rules Analysis and inline code generation
+[↩️](#-table-of-contents)
+
+### 🎯 Objective
+
+Query Bob about the business rules coded in a module, then ask it to create a new one from the editor
+
+### 🔧 Bob Mode to Use
+
+**Mode: 🧰 Z Code**
+
+Z Code mode excels at pattern analysis and extracting business rules embedded in COBOL code.
+
+### 📝 Context
+
+BNK1CAC is the create account program. It verifies the input with a list of rules.
+
+### ✍️ Your Prompt
+
+Extract and save in a md file, the business rules from @cobol_src/BNK1CAC.cbl
+
+**Expected in your prompt:**
+- scope the promp to the target module
+- request implicit business rules
+
+### ✅ Expected Result
+
+Creation of BNK1CAC-business-rules.md file.
+
+It should contain Input Validation Rules
+- Customer Number Validation
+- Account Type Validation
+- Interest Rate Validation
+...
+
+Thare are three verifications on the customer number (length, not underscore, numeric). We will add a new one: the customer number should start with 99.
+
+Comment: the file should also contain other sections than "Input Validation Rules". They may be considered to be more technical rules than business rules and removed).
+
+### ✅ Prompt to Create the new rule:
+
+Open BNK1CAC.cbl in the editor. Place your cursor at the beginning of line 458 (which should be just after the validation that the customer number is numeric) and enter in the editor
+
+```text
+add a test to verify a customer number should start with 99
+```
+
+A bulb appears at the begining of the sentence. Click it and select "Add to IBM Bob"
+
+### ✅ Expected Result 
+
+In the prompt area of IBM Bob appears:
+```text
+base\cobol_src\BNK1CAC.cbl:458-458
+'''
+add a test to verify a customer number should start with 99
+'''
+```
+
+Send the prompt to IBM Bob
+
+### ✅ Expected Result 
+1 - BNK1CAC is updated with a new rule startting at line 459:
+```text
+           IF CUSTNOI(1:2) NOT = '99'
+              MOVE SPACES TO MESSAGEO
+              STRING 'Customer number must start with 99'
+                    DELIMITED BY SIZE,
+                     ' ' DELIMITED BY SIZE
+                 INTO MESSAGEO
+              MOVE 'N' TO VALID-DATA-SW
+              MOVE -1 TO CUSTNOL
+              GO TO ED999
+           END-IF.
+```
+
+2 - BNK1CAC-business-rules.md is updated with the new rule and its associated error message.
 
 ---
 
