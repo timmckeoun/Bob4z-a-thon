@@ -298,6 +298,11 @@ Avant de démarrer l'analyse de votre projet, établir les règles et convention
 Par exemple, des conventions claires pour l'organisation et le nommage des ressources générées par Bob afin de maintenir un workspace structuré et cohérent.
 Et préciser que la documentation sera rédigée en français.
 
+### 🔧 Mode Bob à Utiliser
+
+**Mode : 🧰 Z Code**
+
+Le mode Z Code est spécialisé pour l'analyse et la documentation des applications mainframe (COBOL, PL/I, JCL, Assembler, REXX).
 
 ### ✍️ Votre Prompt
 
@@ -330,7 +335,7 @@ Ajoute dans AGENTS.md des règles d'organisation pour la documentation et les sc
 
 ### ✅ Résultat Attendu
 
-Bob met à jour le fichier **`AGENTS.md`** avec une section dédiée aux conventions et pourra créer un documents spécifique pour détailler les conventions de nommage :
+Bob créer un document (.md) pour stocker les règles. Il va soit mettre à jour le fichier **`AGENTS.md`**, soit mettre à jour un document dans le répertoire **.bob/rules/xxxx.md**. Il créera une section dédiée aux conventions et pourra créer un documents spécifique pour détailler les conventions de nommage :
 
 ```markdown
 
@@ -621,7 +626,7 @@ Rédigez votre propre prompt pour demander un inventaire applicatif complet de C
 ### ✅ Prompt Recommandé
 
 ```text
-Génère un inventaire complet de l'application CBSA, avec pour chaque programme, leur type, leur rôle et leur dépendances (les copybook utilisés, les écrans BMS, les tables DB2 et fichiers utilisés - avec mode d'accès-, les queues, et les programmes appelés).
+Génère un inventaire complet de l'application CBSA, avec pour chaque programme, leur type, leur rôle et leur dépendances (les copybook utilisés, les écrans BMS, les tables DB2 et fichiers utilisés - avec mode d'accès-, les queues, et les programmes appelés). Utiliser les méta-données pour cela. 
 ```
 
 ### 🔀 Variantes de Prompt
@@ -780,7 +785,11 @@ Explique le pgm BANKDATA
 ```text
 Génére la documentation de BANKDATA.
 ```
+**Notez que vous pouvez générer une documentation formatée en utilisant le mot réserver  `/generate-doc`. Alors vous observerez qu'un skill spécifique au Premium Package for Z estis utilsé pour cette génération.**
 
+```text
+/generate-doc BANKDATA
+````
 ### ✅ Résultat Attendu
 
 Bob Premium for Z utilise un skill specialisé pour générer des documents techniques détaillés à partir du code source COBOL (whole-file-explanation) et un outil spécifique (explnation_type)). Si vous n'avez pas précisé à qui s'adresse l'éxplication, Bob proposera de choisir entre 3 progils ARCHITECT, DEVELOPER, BUSINESS.
@@ -821,269 +830,15 @@ Créer un jeu de données de test cohérent pour l'application CBSA avec :
 ```
 
 #### 2. Paramètres d'Entrée
-
-```markdown
-## Paramètres d'Entrée (PARM)
-
-Format : `PARM='fffffff,ttttttt,sssssss,rrrrrrr'`
-
-| Paramètre | Position | Description | Exemple |
-|-----------|----------|-------------|---------|
-| fffffff | 1 | Clé de départ (FROM) | 0000001 |
-| ttttttt | 2 | Clé de fin (TO) | 0001000 |
-| sssssss | 3 | Pas d'incrémentation (STEP) | 0000001 |
-| rrrrrrr | 4 | Graine aléatoire (RANDOM SEED) | 1234567 |
-
-**Exemple d'utilisation** :
-```
-//SYSIN DD *
-PARM='0000001,0001000,0000001,9876543'
-/*
-```
-
-Génère 1000 clients (de 1 à 1000) avec la graine aléatoire 9876543.
-```
+...
 
 #### 3. Structures de Données
+...
 
-```markdown
-## Structures de Données
-
-### Fichier VSAM CUSTOMER
-
-**Copybook** : CUSTOMER.cpy  
-**Organisation** : KSDS (Key Sequenced Data Set)  
-**Clé** : CUSTOMER-KEY (10 octets)
-
-Champs principaux :
-- CUSTOMER-EYECATCHER : 'CUST' (4 octets)
-- CUSTOMER-NUMBER : Numéro unique (10 octets)
-- CUSTOMER-NAME : Nom complet (60 octets)
-- CUSTOMER-ADDRESS : Adresse (160 octets)
-- CUSTOMER-DATE-OF-BIRTH : Date de naissance (10 octets)
-- CUSTOMER-CREDIT-SCORE : Score de crédit (3 chiffres)
-- CUSTOMER-CS-REVIEW-DATE : Date révision crédit (10 octets)
-
-### Table DB2 ACCOUNT
-
-**Copybook** : ACCDB2.cpy  
-**Table** : ACCOUNT
-
-Champs principaux :
-- ACCOUNT-EYECATCHER : 'ACCT' (4 octets)
-- ACCOUNT-CUST-NO : Référence client (10 octets)
-- ACCOUNT-SORT-CODE : Code agence (6 octets) - Valeur fixe : 987654
-- ACCOUNT-NUMBER : Numéro de compte (8 octets)
-- ACCOUNT-TYPE : Type de compte (8 octets)
-- ACCOUNT-INTEREST-RATE : Taux d'intérêt (COMP-3)
-- ACCOUNT-OPENED : Date d'ouverture (10 octets)
-- ACCOUNT-OVERDRAFT-LIMIT : Découvert autorisé (COMP)
-- ACCOUNT-LAST-STMT-DATE : Date dernier relevé (10 octets)
-- ACCOUNT-NEXT-STMT-DATE : Date prochain relevé (10 octets)
-- ACCOUNT-AVAILABLE-BALANCE : Solde disponible (COMP-3)
-- ACCOUNT-ACTUAL-BALANCE : Solde réel (COMP-3)
-```
-
-#### 4. Logique de Traitement
-
-```markdown
 ## Logique de Traitement
 
 ### Flux Principal
-
-1. **Initialisation**
-   - Lecture des paramètres PARM
-   - Validation des paramètres
-   - Ouverture fichier VSAM CUSTOMER
-   - Connexion DB2
-
-2. **Boucle de Génération** (FROM → TO par STEP)
-   - Génération données client
-   - Écriture enregistrement CUSTOMER (VSAM)
-   - Génération 1-3 comptes par client
-   - Insertion enregistrements ACCOUNT (DB2)
-
-3. **Finalisation**
-   - Fermeture fichier VSAM
-   - COMMIT DB2
-   - Affichage statistiques
-   - Terminaison
-
-### Règles de Génération
-
-**Clients** :
-- Numéro client = valeur de la boucle (formaté sur 10 chiffres)
-- Nom = Génération aléatoire basée sur seed
-- Adresse = Génération aléatoire
-- Date de naissance = Aléatoire entre 1940 et 2000
-- Score de crédit = Aléatoire entre 300 et 850
-
-**Comptes** :
-- Nombre de comptes par client = Aléatoire (1 à 3)
-- SORTCODE = Valeur fixe '987654'
-- Numéro de compte = Séquentiel sur 8 chiffres
-- Type = Aléatoire parmi : CURRENT, SAVING, LOAN, ISA
-- Taux d'intérêt = Selon type de compte
-- Solde initial = Aléatoire entre -1000 et 50000
-- Découvert = Selon type et score crédit
-```
-
-#### 5. Copybooks Utilisés
-
-```markdown
-## Copybooks Utilisés
-
-| Copybook | Description | Usage |
-|----------|-------------|-------|
-| CUSTOMER.cpy | Structure enregistrement client VSAM | Définition FD |
-| ACCDB2.cpy | Structure table ACCOUNT DB2 | EXEC SQL INCLUDE |
-| SORTCODE.cpy | Constante SORTCODE | Valeur agence |
-```
-
-#### 6. Gestion des Erreurs
-
-```markdown
-## Gestion des Erreurs
-
-### Erreurs VSAM
-
-- **Status 22** : Clé dupliquée → Ignorée, passage au suivant
-- **Status 24** : Limite fichier atteinte → Arrêt traitement
-- **Autres** : Affichage erreur et ABEND
-
-### Erreurs DB2
-
-- **SQLCODE -803** : Clé dupliquée → Ignorée
-- **SQLCODE < 0** : Erreur SQL → ROLLBACK et ABEND
-- **SQLCODE = 100** : Fin de données → Normal
-
-### Validation Paramètres
-
-- FROM > TO → Erreur "Invalid range"
-- STEP = 0 → Erreur "Invalid step"
-- Paramètres manquants → Valeurs par défaut
-```
-
-#### 7. Statistiques de Sortie
-
-```markdown
-## Statistiques de Sortie
-
-Le programme affiche en fin de traitement :
-
-```
-BANKDATA - Data Initialization Complete
-==========================================
-Customers created    : 1000
-Accounts created     : 2347
-VSAM writes         : 1000
-DB2 inserts         : 2347
-Errors encountered  : 0
-Elapsed time        : 00:02:34
-==========================================
-```
-```
-
-#### 8. Diagramme de Flux
-
-```markdown
-## Diagramme de Flux
-
-```
-┌─────────────────────┐
-│   Début BANKDATA    │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Lecture PARM        │
-│ (FROM,TO,STEP,SEED) │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Validation          │
-│ Paramètres          │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Ouverture VSAM      │
-│ CUSTOMER            │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Connexion DB2       │
-└──────────┬──────────┘
-           │
-           ▼
-    ┌──────────────┐
-    │ Boucle       │◄─────┐
-    │ FROM → TO    │      │
-    └──────┬───────┘      │
-           │              │
-           ▼              │
-┌─────────────────────┐   │
-│ Génération Client   │   │
-│ (nom, adresse, etc) │   │
-└──────────┬──────────┘   │
-           │              │
-           ▼              │
-┌─────────────────────┐   │
-│ WRITE CUSTOMER      │   │
-│ (VSAM)              │   │
-└──────────┬──────────┘   │
-           │              │
-           ▼              │
-    ┌──────────────┐      │
-    │ Boucle       │◄──┐  │
-    │ 1-3 comptes  │   │  │
-    └──────┬───────┘   │  │
-           │           │  │
-           ▼           │  │
-┌─────────────────────┐│  │
-│ Génération Compte   ││  │
-│ (type, solde, etc)  ││  │
-└──────────┬──────────┘│  │
-           │           │  │
-           ▼           │  │
-┌─────────────────────┐│  │
-│ INSERT ACCOUNT      ││  │
-│ (DB2)               ││  │
-└──────────┬──────────┘│  │
-           │           │  │
-           ▼           │  │
-    ┌──────────────┐   │  │
-    │ Compte       │───┘  │
-    │ suivant ?    │      │
-    └──────┬───────┘      │
-           │              │
-           ▼              │
-    ┌──────────────┐      │
-    │ Client       │──────┘
-    │ suivant ?    │
-    └──────┬───────┘
-           │
-           ▼
-┌─────────────────────┐
-│ COMMIT DB2          │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Fermeture VSAM      │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Affichage Stats     │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│   Fin BANKDATA      │
-└─────────────────────┘
+...
 ```
 ```
 
