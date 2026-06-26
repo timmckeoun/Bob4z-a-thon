@@ -138,8 +138,9 @@ Retrieve the CBSA application source code from GitHub and prepare the workspace 
 
 ### 🎯 Prerequisites
 
-- Have IBM Bob 2.0.0 (or higher) installed on a workstation (MacOS, Linux, or Windows) with IBM Bob Premium Package for Z 3.0.0 (or higher) 
+- Have IBM Bob 2.0.0 (or higher) installed on a workstation (MacOS, Linux, or Windows) 
 - Have the following extensions installed:
+    - IBM Bob Premium Package for Z 3.0.0 (or higher) 
     - VS Code Extension for Zowe Explorer 3.5.0 (or higher)
     - IBM Z Open Editor 6.6.0 (or higher)
     - Mermaid (latest version)
