@@ -150,9 +150,9 @@ Reference: https://www.ibm.com/docs/en/bobz/3.0.0?topic=deployment-workstation-r
 
 ### 🔧 Bob Mode to Use
 
-**Mode: 💻 Code**
+**Mode: 💻 Agent**
 
-Code mode allows executing system commands and manipulating files.
+Agent mode allows executing system commands and manipulating files.
 
 ### 📝 Context
 
