@@ -10,7 +10,7 @@
 ## 📋 Table of Contents
 
 1. [Introduction](#1-introduction)
-2. [IBM Bob Premium Package for Z Modes](#2-bob-premium-for-z-modes)
+2. [IBM Bob Premium Package for Z Modes](#2-ibm-bob-premium-package-for-z-modes)
 3. [Lab Preparation](#3-lab-preparation)
 4. [Lab Context](#4-lab-context)
 5. [Learning Objectives](#5-learning-objectives)
@@ -24,17 +24,15 @@
 13. [Exercise 6: Change Impact Analysis](#exercise-6-change-impact-analysis)
 14. [Exercise 7: User Journey Documentation](#exercise-7-user-journey-documentation)
 15. [Exercise 8: Email Search Implementation](#exercise-8-email-search-implementation)
-16. [Exercise 9: Automation with Bobshell Premium Z (not yet available)](#exercise-9-automation-with-bobshell-premium-z)
-17. [Summary and Measurable Gains](#summary-and-measurable-gains)
-18. [Conclusion](#7conclusion)
+16. [Conclusion](#7conclusion)
 
 ---
 
 ## 1. Introduction
 [↩️](#-table-of-contents)
-### What is Bob Premium for Z?
+### What is IBM Bob Premium Package for Z?
 
-**Bob Premium for Z** is an AI assistant specialized in analyzing, documenting, and modernizing IBM Z mainframe applications. It combines:
+**IBM Bob Premium Package for Z** is an AI assistant specialized in analyzing, documenting, and modernizing IBM Z mainframe applications. It combines:
 
 - 🧠 **Advanced Artificial Intelligence** to understand COBOL, PL/I, Assembler, JCL, and REXX code
 - 📊 **Automatic analysis** of application structure and dependencies
@@ -44,7 +42,7 @@
 
 ### Why This Lab?
 
-This lab will allow you to concretely discover how Bob Premium for Z can:
+This lab will allow you to concretely discover how IBM Bob Premium Package for Z can:
 
 1. **Accelerate understanding** of complex mainframe applications
 2. **Automate documentation** technical and functional
@@ -54,9 +52,9 @@ This lab will allow you to concretely discover how Bob Premium for Z can:
 
 ---
 
-## 2. Bob Premium for Z Modes
+## 2. IBM Bob Premium Package for Z Modes
 [↩️](#-table-of-contents)
-Bob Premium for Z offers several specialized modes for different types of tasks:
+IBM Bob Premium Package for Z offers several specialized modes for different types of tasks:
 
 ### 🧰 Z Code
 **Specialty:** Mainframe code analysis and documentation
@@ -140,13 +138,15 @@ Retrieve the CBSA application source code from GitHub and prepare the workspace 
 
 ### 🎯 Prerequisites
 
-- Have IBM Bob installed on a workstation (MacOS, Linux, or Windows)
+- Have IBM Bob 2.0.0 (or higher) installed on a workstation (MacOS, Linux, or Windows) 
 - Have the following extensions installed:
-    - Zowe Explorer 3.5.0 (or higher)
-    - IBM Z Open Editor 6.5.0 (or higher)
+    - IBM Bob Premium Package for Z 3.0.0 (or higher) 
+    - VS Code Extension for Zowe Explorer 3.5.0 (or higher)
+    - IBM Z Open Editor 6.6.0 (or higher)
     - Mermaid (latest version)
     - Draw.io Integration (latest version)
 
+Reference: https://www.ibm.com/docs/en/bobz/3.0.0?topic=deployment-workstation-requirements-bob-premium-package-z
 
 ### 🔧 Bob Mode to Use
 
@@ -213,7 +213,7 @@ The "base" directory contains a complete CICS banking application with COBOL pro
 Before starting the lab, make sure you have:
 
 - **Bob** installed with the **IBM Z Open Editor** extension
-- **Bob Premium for Z** activated in Bob
+- **IBM Bob Premium Package for Z** activated in Bob
 - **Git** installed on your system
 - **Internet access** to clone the repository
 
@@ -262,14 +262,14 @@ You have just joined the maintenance team for this application. You have the sou
 - ❌ Dependencies between programs unknown
 - ❌ Impact of modifications difficult to assess
 
-**Your mission:** Use Bob Premium for Z to analyze and document this application in a few hours instead of several weeks.
+**Your mission:** Use IBM Bob Premium Package for Z to analyze and document this application in a few hours instead of several weeks.
 
 ### Preliminary Remarks
 
 
 - <span style="color: red;">Bob relies on AI agentics, which by definition is not deterministic. For some exercises, you may therefore notice slight differences between your result and the one described in this lab. And sometimes, you will have to add additional instructions to Bob to get the expected result. This is, in general, the approach to have with Bob: it always gets to the result, but sometimes you have to take a different path to get there.</span>
 - **Counts made by AI can be inaccurate. Therefore, calculations should be done by engineering rather than by AI.**
-- IBM Bob Premium for Z relies on existing metadata or metadata it builds in a local database. In the discussion with Bob, it may ask whether to use a centralized metadata repository (e.g., "Do you want to use the Z Understand service for a complete dependency analysis, or analyze only the local workspace?"). **In the context of this lab, we do not use the Z Understand service.**
+- IBM Bob Premium Package for Z relies on existing metadata or metadata it builds in a local database. In the discussion with Bob, it may ask whether to use a centralized metadata repository (e.g., "Do you want to use the Z Understand service for a complete dependency analysis, or analyze only the local workspace?"). **In the context of this lab, we do not use the Z Understand service.**
 - In the various exercises to follow, Bob will be able to propose different options in response to a prompt. It is important to choose the right option to obtain the desired result. In any case, you can always go back and test another option.
 
 
@@ -279,7 +279,7 @@ You have just joined the maintenance team for this application. You have the sou
 [↩️](#-table-of-contents)
 At the end of this lab, you will be able to:
 
-✅ **Initialize** a mainframe workspace with Bob Premium for Z  
+✅ **Initialize** a mainframe workspace with IBM Bob Premium Package for Z  
 ✅ **Automatically generate** a complete application inventory  
 ✅ **Create** visual architecture diagrams  
 ✅ **Analyze** business rules buried in code  
@@ -287,6 +287,99 @@ At the end of this lab, you will be able to:
 ✅ **Document** user journeys  
 ✅ **Propose** technical evolutions with feasibility analysis  
 
+---
+
+## Exercise 0: Define Naming and Organization Rules
+[↩️](#-table-of-contents)
+
+### 🎯 Objective
+
+Before starting your project analysis, establish the rules and conventions to apply.
+For example, clear conventions for organizing and naming resources generated by Bob to maintain a structured and consistent workspace.
+
+
+### ✍️ Your Prompt
+
+Write your own prompt to ask Bob to define naming and organization conventions for generated resources.
+
+**Expected in your prompt:**
+- specify target directories ([`docs/`](docs) for documentation, [`tools/`](tools) for tools)
+- impose a structured naming convention
+- provide concrete examples of expected format
+- explicitly request the update of [`AGENTS.md`](AGENTS.md)
+
+### ✅ Recommended Prompt
+
+```text
+Create the following Bob rules: - Documents must be stored in the docs/ directory, tools in tools/, - Document names must follow these conventions:
+-- Prefix: program name (e.g., BNKMENU) if the document concerns a specific program, or CBSA for the application, or GLOBAL for cross-cutting documents
+-- Document type: analysis, archi, docu, inv, plan, spec
+-- Format: [PREFIX]-[TYPE]-[description].md
+```
+
+### 🔀 Prompt Variants
+
+```text
+Define a standard naming convention for all documents and tools generated in this workspace, then save it in AGENTS.md.
+```
+
+```text
+Add rules in AGENTS.md for organizing documentation and scripts, with a consistent naming format and examples.
+```
+
+### ✅ Expected Result
+
+Bob updates the **`AGENTS.md`** file with a dedicated section for conventions and may create a specific document to detail naming conventions:
+
+
+
+## File Organization
+
+### Directory Structure
+
+- **`docs/`**: All project documents (analyses, architectures, specifications, etc.)
+- **`tools/`**: Scripts and utility tools for the project
+- **`base/`**: CICS banking application source code
+  - `cobol_src/`: COBOL programs
+  - `cobol_copy/`: COBOL copybooks
+  - `bms_src/`: BMS screen definitions
+
+## Document Naming Conventions
+...
+
+
+### 🎓 What You Learn
+
+- **Agents.md** (or **.bob/rules.md**) provides the rules that will be applied to the workspace.
+
+- **Structured organization:** A well-organized workspace facilitates navigation and maintenance
+- **Clear conventions:** Consistent naming rules allow quick document retrieval
+- **Scalability:** The structure supports project growth without disorganization
+- **Collaboration:** The entire team follows the same conventions
+
+### 💡 Best Practices
+
+1. **Always respect conventions**: Even for temporary documents
+2. **Use descriptive names**: The name should clearly indicate the content
+3. **Organize by type**: Group similar documents in the same directories
+4. **Document exceptions**: If you must deviate from rules, document why in AGENTS.md
+
+### ⚠️ Mistakes to Avoid
+
+- ❌ Creating documents at the project root
+- ❌ Using generic names like `doc1.md`, `analysis.md`
+- ❌ Mixing multiple content types in one document
+- ❌ Forgetting the prefix (program or CBSA/GLOBAL)
+- **Critical patterns:** Bob identifies mandatory compilation directives and error patterns
+
+### 💡 IBM Bob Premium Package for Z Added Value
+
+| Without Bob | With IBM Bob Premium Package for Z |
+|----------|------------------------|
+| 2-3 days of manual exploration | 2-3 minutes of automatic analysis |
+| Incomplete documentation | Exhaustive and structured documentation |
+| Risk of missing critical patterns | All patterns automatically identified |
+| No standardization | Conventions established from the start |
 
 ---
 
@@ -329,7 +422,7 @@ Write your own prompt to ask Bob to initialize and fully analyze the workspace.
 /init
 ```
 
-**Note:** The `init` command is a special Bob Premium for Z command that triggers a complete workspace analysis.
+**Note:** The `init` command is a special IBM Bob Premium Package for Z command that triggers a complete workspace analysis.
 
 ### 🔀 Prompt Variants
 
@@ -574,9 +667,9 @@ change @docs/CBSA-archi-dependances.drawio so that all texts are written in blac
 generate a program call graph
 ```
 
-### 💡 Bob Premium for Z Added Value
+### 💡 IBM Bob Premium Package for Z Added Value
 
-| Without Bob | With Bob Premium for Z |
+| Without Bob | With IBM Bob Premium Package for Z |
 |----------|------------------------|
 | 2-3 days of manual creation | 5 minutes of automatic generation |
 | Static diagram (PowerPoint) | Editable format (Draw.io) |
@@ -612,7 +705,7 @@ Write your own prompt to request complete technical documentation for the [`BANK
 **Expected in your prompt:**
 - explicitly name the target program
 - request to explain or document the program
-- you are not required to specify explanation sections, as Bob Premium for Z provides a default document structure.
+- you are not required to specify explanation sections, as IBM Bob Premium Package for Z provides a default document structure.
 
 ### ✅ Recommended Prompt
 
@@ -628,7 +721,7 @@ Generate BANKDATA documentation.
 
 ### ✅ Expected Result
 
-Bob Premium for Z uses a specialized skill to generate detailed technical documents from COBOL source code (whole-file-explanation) and a specific tool (explanation_type). If you haven't specified the target audience for the explanation, Bob will offer to choose between 3 profiles: ARCHITECT, DEVELOPER, BUSINESS.
+IBM Bob Premium Package for Z uses a specialized skill to generate detailed technical documents from COBOL source code (whole-file-explanation) and a specific tool (explanation_type). If you haven't specified the target audience for the explanation, Bob will offer to choose between 3 profiles: ARCHITECT, DEVELOPER, BUSINESS.
 
 If you request an explanation, Bob may not save it to a file. You must then explicitly request it.
 ```text
@@ -730,178 +823,7 @@ Generates 1000 customers (from 1 to 1000) with random seed 9876543.
    - Display statistics
 ```
 
-#### 5. Business Rules
-
-```markdown
-## Business Rules
-
-### Customer Generation
-
-- **Customer number**: Sequential from FROM to TO
-- **Name**: Random from predefined list
-- **Address**: Random combination of street/city/state
-- **Date of birth**: Random between 1940-2000
-- **Credit score**: Random between 300-850
-
-### Account Generation
-
-- **Number of accounts**: Random 1-3 per customer
-- **Account types**: 
-  - Checking (50% probability)
-  - Savings (30% probability)
-  - Loan (20% probability)
-- **Initial balance**:
-  - Checking: $100-$10,000
-  - Savings: $500-$50,000
-  - Loan: -$1,000 to -$100,000
-```
-
-#### 6. Error Handling
-
-```markdown
-## Error Handling
-
-### VSAM Errors
-
-- **File status 00**: Success
-- **File status 22**: Duplicate key → Ignored
-- **Other**: Display error and ABEND
-
-### DB2 Errors
-
-- **SQLCODE -803**: Duplicate key → Ignored
-- **SQLCODE < 0**: SQL error → ROLLBACK and ABEND
-- **SQLCODE = 100**: End of data → Normal
-
-### Parameter Validation
-
-- FROM > TO → Error "Invalid range"
-- STEP = 0 → Error "Invalid step"
-- Missing parameters → Default values
-```
-
-#### 7. Output Statistics
-
-```markdown
-## Output Statistics
-
-The program displays at end of processing:
-
-```
-BANKDATA - Data Initialization Complete
-==========================================
-Customers created    : 1000
-Accounts created     : 2347
-VSAM writes         : 1000
-DB2 inserts         : 2347
-Errors encountered  : 0
-Elapsed time        : 00:02:34
-==========================================
-```
-```
-
-#### 8. Flow Diagram
-
-```markdown
-## Flow Diagram
-
-```
-┌─────────────────────┐
-│   Start BANKDATA    │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Read PARM           │
-│ (FROM,TO,STEP,SEED) │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Validate            │
-│ Parameters          │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Open VSAM           │
-│ CUSTOMER            │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Connect DB2         │
-└──────────┬──────────┘
-           │
-           ▼
-    ┌──────────────┐
-    │ Loop         │◄─────┐
-    │ FROM → TO    │      │
-    └──────┬───────┘      │
-           │              │
-           ▼              │
-┌─────────────────────┐   │
-│ Generate Customer   │   │
-│ (name, address, etc)│   │
-└──────────┬──────────┘   │
-           │              │
-           ▼              │
-┌─────────────────────┐   │
-│ WRITE CUSTOMER      │   │
-│ (VSAM)              │   │
-└──────────┬──────────┘   │
-           │              │
-           ▼              │
-    ┌──────────────┐      │
-    │ Loop         │◄──┐  │
-    │ 1-3 accounts │   │  │
-    └──────┬───────┘   │  │
-           │           │  │
-           ▼           │  │
-┌─────────────────────┐│  │
-│ Generate Account    ││  │
-│ (type, balance, etc)││  │
-└──────────┬──────────┘│  │
-           │           │  │
-           ▼           │  │
-┌─────────────────────┐│  │
-│ INSERT ACCOUNT      ││  │
-│ (DB2)               ││  │
-└──────────┬──────────┘│  │
-           │           │  │
-           ▼           │  │
-    ┌──────────────┐   │  │
-    │ Next         │───┘  │
-    │ account?     │      │
-    └──────┬───────┘      │
-           │              │
-           ▼              │
-    ┌──────────────┐      │
-    │ Next         │──────┘
-    │ customer?    │
-    └──────┬───────┘
-           │
-           ▼
-┌─────────────────────┐
-│ COMMIT DB2          │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Close VSAM          │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Display Stats       │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│   End BANKDATA      │
-└─────────────────────┘
-```
-```
+#### 5. etc...
 
 ### 🎓 What You Learn
 
@@ -911,9 +833,9 @@ Elapsed time        : 00:02:34
 - **Data generation**: Techniques for creating coherent test data sets
 - **Error handling**: VSAM and DB2 error handling patterns
 
-### 💡 Bob Premium for Z Added Value
+### 💡 IBM Bob Premium Package for Z Added Value
 
-| Aspect | Manual Documentation | With Bob Premium for Z |
+| Aspect | Manual Documentation | With IBM Bob Premium Package for Z |
 |--------|------------------------|------------------------|
 | **Time** | 1-2 days of analysis and writing | 5 minutes of generation |
 | **Quality** | Variable depending on writer | Standardized and exhaustive |
@@ -1304,9 +1226,9 @@ Document containing:
 - Troubleshooting guide
 - Real use cases
 
-### 💡 Bob Premium for Z Added Value
+### 💡 IBM Bob Premium Package for Z Added Value
 
-| Without Bob | With Bob Premium for Z |
+| Without Bob | With IBM Bob Premium Package for Z |
 |----------|------------------------|
 | 3-4 days of writing | 10 minutes of generation |
 | Technical documentation | Adapted business documentation |
@@ -1807,483 +1729,13 @@ PROCEDURE DIVISION.
 
 ---
 
-## Exercise 9: Automation with Bobshell Premium Z
-[↩️](#-table-of-contents)
-
-### This exercise is under devlopment. Please skip it.
-
-### 🎯 Objective
-
-Create a Bobshell (automated script) to automatically generate documentation for all application programs.
-
-### 🔧 Bob Mode to Use
-
-**Mode: 💻 Code**
-
-Code mode allows creating automation scripts (Bobshells) that execute repetitive tasks.
-
-### 📝 Context
-
-You have 28 COBOL programs in the CBSA application. Manually documenting each program would take several weeks. A Bobshell can automate this task and generate standardized documentation for all programs in minutes.
-
-### 💬 Bob Prompt
-
-```
-Create a Bobshell that automatically generates technical documentation for each COBOL program in base/cobol_src/. For each program, the documentation must include:
-- Program description
-- Business objective
-- Copybooks used
-- Files accessed
-- Programs called
-- Code structure (sections and paragraphs)
-- Main variables
-- Identified business rules
-
-Store each documentation in docs/ with naming format: [PROGRAM]-docu-technique.md
-```
-
-### ✅ Expected Result
-
-Bob creates **`tools/generate-program-docs.bobshell`**:
-
-```yaml
-# Bobshell Premium Z - Automatic Program Documentation
-# Version: 1.0
-# Description: Generates technical documentation for all COBOL programs
-
-name: "CBSA Automatic Documentation"
-version: "1.0"
-mode: "z-code"
-
-# Configuration
-config:
-  source_dir: "base/cobol_src"
-  output_dir: "docs"
-  file_pattern: "*.cbl"
-  naming_convention: "{PROGRAM}-docu-technique.md"
-
-# Execution steps
-steps:
-  - name: "Program scan"
-    action: "list_files"
-    params:
-      directory: "${source_dir}"
-      pattern: "${file_pattern}"
-    output: "program_list"
-
-  - name: "Documentation for each program"
-    action: "for_each"
-    items: "${program_list}"
-    steps:
-      - name: "Program analysis"
-        action: "analyze_program"
-        params:
-          program: "${item}"
-          analysis_type: "complete"
-        output: "program_analysis"
-
-      - name: "Documentation generation"
-        action: "generate_doc"
-        params:
-          template: "technical_doc"
-          data: "${program_analysis}"
-          sections:
-            - "description"
-            - "business_objective"
-            - "copybooks"
-            - "files_accessed"
-            - "programs_called"
-            - "code_structure"
-            - "main_variables"
-            - "business_rules"
-        output: "documentation"
-
-      - name: "Documentation save"
-        action: "write_file"
-        params:
-          path: "${output_dir}/${item.name}-docu-technique.md"
-          content: "${documentation}"
-
-  - name: "Index generation"
-    action: "generate_index"
-    params:
-      title: "CBSA Documentation Index"
-      output: "${output_dir}/CBSA-inv-documentation.md"
-      items: "${program_list}"
-
-# Final report
-report:
-  summary: true
-  statistics: true
-  errors: true
-```
-
-### ⚙️ Bobshell Execution
-
-#### 💬 Bob Prompt
-
-```
-Execute the generate-program-docs.bobshell Bobshell
-```
-
-#### ✅ Execution Result
-
-Bob executes the Bobshell and generates:
-
-**Console output**:
-```
-╔════════════════════════════════════════════════════════════╗
-║  BOBSHELL PREMIUM Z - Execution in progress                ║
-╠════════════════════════════════════════════════════════════╣
-║  Script: generate-program-docs.bobshell                    ║
-║  Mode  : z-code                                            ║
-║  Start : 2026-05-05 15:20:00                              ║
-╚════════════════════════════════════════════════════════════╝
-
-[1/4] Program scan...
-      ✓ 28 COBOL programs detected in base/cobol_src/
-
-[2/4] Documentation for each program...
-      ✓ ABNDPROC.cbl    → docs/ABNDPROC-docu-technique.md
-      ✓ BANKDATA.cbl    → docs/BANKDATA-docu-technique.md
-      ✓ BNK1CAC.cbl     → docs/BNK1CAC-docu-technique.md
-      ✓ BNK1CCA.cbl     → docs/BNK1CCA-docu-technique.md
-      ✓ BNK1CCS.cbl     → docs/BNK1CCS-docu-technique.md
-      ✓ BNK1CRA.cbl     → docs/BNK1CRA-docu-technique.md
-      ✓ BNK1DAC.cbl     → docs/BNK1DAC-docu-technique.md
-      ✓ BNK1DCS.cbl     → docs/BNK1DCS-docu-technique.md
-      ✓ BNK1TFN.cbl     → docs/BNK1TFN-docu-technique.md
-      ✓ BNK1UAC.cbl     → docs/BNK1UAC-docu-technique.md
-      ✓ BNKMENU.cbl     → docs/BNKMENU-docu-technique.md
-      ✓ CRDTAGY1.cbl    → docs/CRDTAGY1-docu-technique.md
-      ✓ CRDTAGY2.cbl    → docs/CRDTAGY2-docu-technique.md
-      ✓ CRDTAGY3.cbl    → docs/CRDTAGY3-docu-technique.md
-      ✓ CRDTAGY4.cbl    → docs/CRDTAGY4-docu-technique.md
-      ✓ CRDTAGY5.cbl    → docs/CRDTAGY5-docu-technique.md
-      ✓ CREACC.cbl      → docs/CREACC-docu-technique.md
-      ✓ CRECUST.cbl     → docs/CRECUST-docu-technique.md
-      ✓ DBCRFUN.cbl     → docs/DBCRFUN-docu-technique.md
-      ✓ DELACC.cbl      → docs/DELACC-docu-technique.md
-      ✓ DELCUS.cbl      → docs/DELCUS-docu-technique.md
-      ✓ GETCOMPY.cbl    → docs/GETCOMPY-docu-technique.md
-      ✓ GETSCODE.cbl    → docs/GETSCODE-docu-technique.md
-      ✓ INQACC.cbl      → docs/INQACC-docu-technique.md
-      ✓ INQACCCU.cbl    → docs/INQACCCU-docu-technique.md
-      ✓ INQCUST.cbl     → docs/INQCUST-docu-technique.md
-      ✓ UPDACC.cbl      → docs/UPDACC-docu-technique.md
-      ✓ UPDCUST.cbl     → docs/UPDCUST-docu-technique.md
-
-[3/4] Index generation...
-      ✓ docs/CBSA-inv-documentation.md created
-
-[4/4] Final report...
-
-╔════════════════════════════════════════════════════════════╗
-║  BOBSHELL PREMIUM Z - Execution completed                  ║
-╠════════════════════════════════════════════════════════════╣
-║  Status   : ✅ SUCCESS                                     ║
-║  Duration : 3 minutes 42 seconds                          ║
-║  Files    : 29 documents generated                        ║
-║  Lines    : 18,450 lines of documentation                 ║
-║  Errors   : 0                                             ║
-╚════════════════════════════════════════════════════════════╝
-```
-
-### 📄 Example of Generated Documentation
-
-**File: `docs/BNKMENU-docu-technique.md`** (excerpt)
-
-```markdown
-# Technical Documentation - BNKMENU
-
-**Program**: BNKMENU.cbl  
-**Type**: CICS presentation program  
-**Author**: Generated by Bob Premium for Z  
-**Date**: 2026-05-05
-
----
-
-## Description
-
-BNKMENU is the main menu program of the CBSA application. It handles menu display and routing to different application features.
-
-## Business Objective
-
-- Display main menu to users
-- Capture user choice
-- Route to appropriate transaction
-- Handle input errors
-
-## Copybooks Used
-
-| Copybook | Description | Usage |
-|----------|-------------|-------|
-| BANKMAP.cpy | BMS map definition | Menu screen |
-| RESPSTR.cpy | Response codes | Error handling |
-
-## Files Accessed
-
-No files directly accessed (routing program).
-
-## Programs Called
-
-No programs directly called. Uses CICS RETURN TRANSID for routing.
-
-## Code Structure
-
-### Main Sections
-
-1. **MAIN-PROCESSING**
-   - Program entry point
-   - Main flow management
-
-2. **SEND-MENU**
-   - Send menu map to screen
-   - Display attribute management
-
-3. **RECEIVE-MENU**
-   - Receive user input
-   - Choice validation
-
-4. **PROCESS-CHOICE**
-   - Evaluate user choice
-   - Route to appropriate transaction
-
-5. **SEND-ERROR**
-   - Display error messages
-   - Error case handling
-
-### Paragraphs
-
-- `MAIN-PROCESSING`: Main logic
-- `SEND-MENU`: Screen send
-- `RECEIVE-MENU`: Input receive
-- `PROCESS-CHOICE`: Choice processing
-- `ROUTE-TO-TRANSACTION`: CICS routing
-- `SEND-ERROR`: Error handling
-- `GET-ME-OUT-OF-HERE`: Termination
-
-## Main Variables
-
-| Variable | Type | Description |
-|----------|------|-------------|
-| WS-MENU-OPTION | PIC X | User choice (1-9) |
-| WS-TRANSID | PIC X(4) | Target transaction code |
-| WS-ERROR-MSG | PIC X(79) | Error message |
-| EIBAID | CICS | Key pressed |
-
-## Business Rules
-
-1. **Choice validation**: Choice must be between 1 and 9
-2. **TRANSID routing**: Each option corresponds to a CICS transaction
-3. **PF3 handling**: PF3 key terminates session
-4. **CLEAR handling**: CLEAR key redisplays menu
-
-## Associated Transactions
-
-| Option | TRANSID | Description |
-|--------|---------|-------------|
-| 1 | OCCA | Account inquiry |
-| 2 | OCRA | Account creation |
-| 3 | OUCA | Customer update |
-| 4 | OTFN | Funds transfer |
-| 5 | ODAC | Account debit/credit |
-| 6 | ODCS | Account deletion |
-
-## Dependencies
-
-### Inbound
-- Called by: OMEN transaction (main menu)
-
-### Outbound
-- Calls: None (CICS routing only)
-
-## Technical Notes
-
-- Stateless program
-- Uses CICS RETURN TRANSID for navigation
-- No database access
-- Minimal error handling (simple program)
-
----
-
-*Documentation automatically generated by Bob Premium for Z*
-```
-
-### 📊 Generated Index File
-
-**File: `docs/CBSA-inv-documentation.md`**
-
-```markdown
-# CBSA Documentation Index
-
-**Application**: CICS Banking Sample Application  
-**Generation date**: 2026-05-05  
-**Number of programs**: 28
-
----
-
-## Presentation Programs (UI)
-
-| Program | Description | Documentation |
-|-----------|-------------|---------------|
-| BNKMENU | Main menu | [BNKMENU-docu-technique.md](BNKMENU-docu-technique.md) |
-| BNK1CAC | Account creation - Screen | [BNK1CAC-docu-technique.md](BNK1CAC-docu-technique.md) |
-| BNK1CCA | Account inquiry - Screen | [BNK1CCA-docu-technique.md](BNK1CCA-docu-technique.md) |
-| BNK1CCS | Account inquiry - Controller | [BNK1CCS-docu-technique.md](BNK1CCS-docu-technique.md) |
-| BNK1CRA | Account creation - Controller | [BNK1CRA-docu-technique.md](BNK1CRA-docu-technique.md) |
-| BNK1DAC | Account deletion - Screen | [BNK1DAC-docu-technique.md](BNK1DAC-docu-technique.md) |
-| BNK1DCS | Account deletion - Controller | [BNK1DCS-docu-technique.md](BNK1DCS-docu-technique.md) |
-| BNK1TFN | Transfer - Screen | [BNK1TFN-docu-technique.md](BNK1TFN-docu-technique.md) |
-| BNK1UAC | Account update - Screen | [BNK1UAC-docu-technique.md](BNK1UAC-docu-technique.md) |
-
-## Service Programs (Business Logic)
-
-| Program | Description | Documentation |
-|-----------|-------------|---------------|
-| CREACC | Account creation | [CREACC-docu-technique.md](CREACC-docu-technique.md) |
-| CRECUST | Customer creation | [CRECUST-docu-technique.md](CRECUST-docu-technique.md) |
-| DBCRFUN | Debit/Credit | [DBCRFUN-docu-technique.md](DBCRFUN-docu-technique.md) |
-| DELACC | Account deletion | [DELACC-docu-technique.md](DELACC-docu-technique.md) |
-| DELCUS | Customer deletion | [DELCUS-docu-technique.md](DELCUS-docu-technique.md) |
-| INQACC | Account inquiry | [INQACC-docu-technique.md](INQACC-docu-technique.md) |
-| INQACCCU | Customer accounts inquiry | [INQACCCU-docu-technique.md](INQACCCU-docu-technique.md) |
-| INQCUST | Customer inquiry | [INQCUST-docu-technique.md](INQCUST-docu-technique.md) |
-| UPDACC | Account update | [UPDACC-docu-technique.md](UPDACC-docu-technique.md) |
-| UPDCUST | Customer update | [UPDCUST-docu-technique.md](UPDCUST-docu-technique.md) |
-
-## Utility Programs
-
-| Program | Description | Documentation |
-|-----------|-------------|---------------|
-| ABNDPROC | Error handler | [ABNDPROC-docu-technique.md](ABNDPROC-docu-technique.md) |
-| GETCOMPY | Company data retrieval | [GETCOMPY-docu-technique.md](GETCOMPY-docu-technique.md) |
-| GETSCODE | SORTCODE retrieval | [GETSCODE-docu-technique.md](GETSCODE-docu-technique.md) |
-
-## Batch Programs
-
-| Program | Description | Documentation |
-|-----------|-------------|---------------|
-| BANKDATA | Data initialization | [BANKDATA-docu-technique.md](BANKDATA-docu-technique.md) |
-
-## External Programs (Simulation)
-
-| Program | Description | Documentation |
-|-----------|-------------|---------------|
-| CRDTAGY1-5 | Simulated credit agencies | [CRDTAGY1-docu-technique.md](CRDTAGY1-docu-technique.md) |
-
----
-
-*Index automatically generated by Bob Premium for Z*
-```
-
-### 🎓 What You Learn
-
-- **Automation**: A Bobshell can process 28 programs in 3 minutes
-- **Standardization**: Homogeneous documentation for all programs
-- **Reusability**: The Bobshell can be re-executed with each modification
-- **Scalability**: Works for 10 or 1000 programs
-- **Maintenance**: Documentation always up to date
-
-### 💡 Bob Premium for Z Added Value
-
-| Aspect | Manual Documentation | With Bobshell |
-|--------|------------------------|---------------|
-| **Time** | 2-3 weeks (28 programs) | 3 minutes 42 seconds |
-| **Quality** | Variable by writer | Standardized and complete |
-| **Maintenance** | Difficult to maintain | Automatic re-execution |
-| **Coverage** | Often partial | 100% of programs |
-| **Cost** | $12,000 - $18,000 | $50 (Bobshell cost) |
-
-**Global gain**: **99.8% time reduction**
-
-### 🔄 Bobshell Reuse
-
-The Bobshell can be reused for:
-
-1. **Regular updates**: Re-execute after code modifications
-2. **New programs**: Automatically document additions
-3. **Other projects**: Adapt script for other applications
-4. **Different formats**: Modify template for HTML, PDF, etc.
-
-### 📝 Bobshell Customization
-
-You can customize:
-
-```yaml
-# Add custom sections
-sections:
-  - "description"
-  - "business_objective"
-  - "performance_metrics"      # ← NEW
-  - "security_considerations"  # ← NEW
-  - "copybooks"
-  - "files_accessed"
-
-# Change output format
-output_format: "markdown"  # or "html", "pdf", "docx"
-
-# Filter programs
-filter:
-  include_pattern: "BNK*.cbl"  # Only BNK programs
-  exclude_pattern: "TEST*.cbl"  # Exclude tests
-```
-
----
-
-## 6.📊 Summary and Measurable Gains
-[↩️](#-table-of-contents)
-
-### Exercise Summary
-
-| Exercise | Task | Manual Time | Bob Time | Gain |
-|----------|-------|--------------|-----------|------|
-| 1 | Complete architecture analysis | 2-3 days | 5 minutes | 99% |
-| 2 | Business flow documentation | 1 day | 3 minutes | 99.7% |
-| 3 | SORTCODE impact analysis | 3-4 days | 8 minutes | 99% |
-| 4 | Customer number identification | 2 days | 4 minutes | 99.6% |
-| 5 | Improvement suggestions | 1-2 days | 6 minutes | 99.5% |
-| 6 | Dependency diagram | 2 days | 5 minutes | 99.7% |
-| 7 | Complete email implementation | 3-4 weeks | 45 minutes | 99.8% |
-| 8 | 28 programs documentation | 2-3 weeks | 3 minutes | 99.8% |
-| **TOTAL** | **8-10 weeks** | **~2 hours** | **99.5%** |
-
-### Bob Premium for Z ROI
-
-
-**Investment**:
-- Bob Premium for Z License: $X/month
-- Initial training: 1 day (this lab)
-
-**Measured gains**:
-- **Time**: 8-10 weeks → 2 hours (99.5% reduction)
-- **Cost**: $80,000 - $120,000 → $2,000 (98% reduction)
-- **Quality**: Standardized and complete documentation
-- **Maintenance**: Automated updates
-
-**Return on investment**: From the first analysis project
-
-### Acquired Skills
-
-After this lab, you master:
-
-1. ✅ **Architecture analysis** with Bob Premium for Z
-2. ✅ **Automatic documentation** of business flows
-3. ✅ **Impact analysis** on legacy code
-4. ✅ **Pattern identification** in code
-5. ✅ **AI-based improvement suggestions**
-6. ✅ **Technical diagram generation**
-7. ✅ **Complete implementation** of new features
-8. ✅ **Automation** with Bobshells
-
----
 
 ## 7.Conclusion
 [↩️](#-table-of-contents)
 
 ### 🎉 Congratulations!
 
-You have completed the Bob Premium for Z lab. In a few hours, you have:
+You have completed the IBM Bob Premium Package for Z lab. In a few hours, you have:
 
 ✅ Initialized and analyzed a complex mainframe workspace
 ✅ Generated an exhaustive application inventory
@@ -2330,7 +1782,7 @@ During this lab, you used different Bob modes according to needs:
 
 ### 🚀 Next Steps
 
-Now that you master Bob Premium for Z, you can:
+Now that you master IBM Bob Premium Package for Z, you can:
 
 1. **Apply these techniques** to your own mainframe applications
 2. **Train your team** with this lab
@@ -2370,7 +1822,7 @@ Here are other Bobshells you can create for your team:
 
 ### 💼 Enterprise Use Cases
 
-Bob Premium for Z is particularly useful for:
+IBM Bob Premium Package for Z is particularly useful for:
 
 - **Onboarding**: Accelerate new developer ramp-up
 - **Maintenance**: Quickly understand legacy code
@@ -2397,7 +1849,7 @@ During this lab, you generated:
 
 ### 🎯 Business Value
 
-**Bob Premium for Z ROI:**
+**IBM Bob Premium Package for Z ROI:**
 
 - **Time-to-Market Reduction**: 99.6% time saved
 - **Quality Improvement**: Exhaustive and accurate documentation
@@ -2412,7 +1864,7 @@ During this lab, you generated:
 
 ### 🌟 Testimonials
 
-> "Bob Premium for Z has transformed the way we work. What used to take weeks now takes minutes."  
+> "IBM Bob Premium Package for Z has transformed the way we work. What used to take weeks now takes minutes."  
 > — Mainframe Architect, Major European Bank
 
 > "The documentation generated by Bob is more complete and accurate than what we did manually."  
@@ -2423,7 +1875,7 @@ During this lab, you generated:
 
 ### 📞 Support and Resources
 
-To go further with Bob Premium for Z:
+To go further with IBM Bob Premium Package for Z:
 
 - **Documentation**: Consult user guides
 - **Support**: Contact the Bob Premium team
@@ -2436,10 +1888,10 @@ To go further with Bob Premium for Z:
 
 **Lab Version:** 1.0  
 **Creation date:** 2026-05-04  
-**Author:** Bob Premium for Z Team
+**Author:** IBM Bob Premium Package for Z Team
 ---
 
-## 🚀 Summary: The Value of Bob Premium for Z
+## 🚀 Summary: The Value of IBM Bob Premium Package for Z
 
 ### Measurable Gains
 
@@ -2457,7 +1909,7 @@ To go further with Bob Premium for Z:
 
 ---
 
-### 💡 Key Capabilities of Bob Premium for Z
+### 💡 Key Capabilities of IBM Bob Premium Package for Z
 
 #### 1. Intelligent Analysis
 - Automatic metadata interrogation
@@ -2515,10 +1967,10 @@ To go further with Bob Premium for Z:
 
 ---
 
-### 📈 Bob Premium for Z ROI
+### 📈 IBM Bob Premium Package for Z ROI
 
 **Investment**:
-- Bob Premium for Z License
+- IBM Bob Premium Package for Z License
 - Initial training (1-2 days)
 
 **Returns**:
@@ -2583,7 +2035,7 @@ Propose a migration strategy for [SYSTEM]
 
 1. **Practice**: Use Bob on your own mainframe applications
 2. **Explore**: Test other types of prompts and modes
-3. **Share**: Train your team on Bob Premium for Z
+3. **Share**: Train your team on IBM Bob Premium Package for Z
 4. **Optimize**: Integrate Bob into your development processes
 5. **Innovate**: Use Bob to modernize your legacy systems
 
@@ -2598,6 +2050,6 @@ Propose a migration strategy for [SYSTEM]
 
 **Version**: 1.0  
 **Date**: May 5, 2026  
-**Author**: Bob Premium for Z
+**Author**: IBM Bob Premium Package for Z
 
 **Transform the way you work with mainframe! 🚀**
