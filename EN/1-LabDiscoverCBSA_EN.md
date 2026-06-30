@@ -163,7 +163,7 @@ Then, open Bob, click on the **File>Open Folder** menu and choose the ~/CBSA dir
 ### 💬 Bob Prompt
 
 ```
-Retrieve the directory named "src/base" from the GitHub repository https://github.com/cicsdev/cics-banking-sample-application-cbsa.git and place it in this workspace.
+Retrieve the directory named "src/base" from the GitHub repository https://github.com/cicsdev/cics-banking-sample-application-cbsa.git and place it in this workspace. Remove temporary work directory.
 ```
 
 #### Alternative
@@ -311,7 +311,9 @@ Write your own prompt to ask Bob to define naming and organization conventions f
 ### ✅ Recommended Prompt
 
 ```text
-Create the following Bob rules: - Documents must be stored in the docs/ directory, tools in tools/, - Document names must follow these conventions:
+Add rules in AGENTS.md for organizing documentation and scripts, with a consistent naming format and examples:
+- Documents must be stored in the docs/ directory, tools in tools/, 
+- Document names must follow these conventions:
 -- Prefix: program name (e.g., BNKMENU) if the document concerns a specific program, or CBSA for the application, or GLOBAL for cross-cutting documents
 -- Document type: analysis, archi, docu, inv, plan, spec
 -- Format: [PREFIX]-[TYPE]-[description].md
@@ -323,9 +325,6 @@ Create the following Bob rules: - Documents must be stored in the docs/ director
 Define a standard naming convention for all documents and tools generated in this workspace, then save it in AGENTS.md.
 ```
 
-```text
-Add rules in AGENTS.md for organizing documentation and scripts, with a consistent naming format and examples.
-```
 
 ### ✅ Sample Result
 
@@ -376,7 +375,6 @@ Bob updates the **`AGENTS.md`** file with a dedicated section for conventions an
 
 | Without Bob | With IBM Bob Premium Package for Z |
 |----------|------------------------|
-| 2-3 days of manual exploration | 2-3 minutes of automatic analysis |
 | Incomplete documentation | Exhaustive and structured documentation |
 | Risk of missing critical patterns | All patterns automatically identified |
 | No standardization | Conventions established from the start |
@@ -1005,8 +1003,9 @@ Z Code mode excels at pattern analysis and extracting business rules embedded in
 BNK1CAC is the create account program. It verifies the input with a list of rules.
 
 ### ✍️ Your Prompt
-
-Extract and save in a md file, the business rules from @cobol_src/BNK1CAC.cbl
+```text
+Extract and save in a md file, the business rules from @/src/base/cobol_src/BNK1CAC.cbl
+```
 
 **Expected in your prompt:**
 - scope the promp to the target module
@@ -1028,17 +1027,8 @@ Comment: the file should also contain other sections than "Input Validation Rule
 
 ### ✅ Prompt to Create the new rule:
 
-Open BNK1CAC.cbl in the editor. Place your cursor at the beginning of line 458 (which should be just after the validation that the customer number is numeric) and enter in the editor
+Open BNK1CAC.cbl in the editor. Place your cursor at the beginning of line 458 (which should be just after Bob prompt:
 
-```text
-add a test to verify a customer number should start with 99
-```
-
-A bulb appears at the begining of the sentence. Click it and select "Add to IBM Bob"
-
-### ✅ Sample Result 
-
-In the prompt area of IBM Bob appears:
 ```text
 base\cobol_src\BNK1CAC.cbl:458-458
 '''
@@ -1046,7 +1036,6 @@ add a test to verify a customer number should start with 99
 '''
 ```
 
-Send the prompt to IBM Bob
 
 ### ✅ Sample Result 
 1 - BNK1CAC is updated with a new rule startting at line 459:
@@ -1063,7 +1052,7 @@ Send the prompt to IBM Bob
            END-IF.
 ```
 
-2 - BNK1CAC-business-rules.md is updated with the new rule and its associated error message.
+2 - BNK1CAC-business-rules.md is updated with the new rule and its associated error message. If not, ask Bob to update it.
 
 ---
 
@@ -1116,7 +1105,7 @@ Provide:
 Perform a complete impact analysis to transform the fixed SORTCODE into multi-branch data, with risks, effort, and migration.
 ```
 
-### ✅ Sample Result
+### ✅ Sample Result (depends on multiple choices...)
 
 **File created: `docs/CBSA-archi-impact***.md`**
 
@@ -1217,7 +1206,7 @@ Document step-by-step the customer account consultation journey in CBSA, with a 
 
 ### ✅ Sample Result
 
-**File created: `docs/CBSA-guide-Account consultation.md`**
+**File created: `docs/CBSA-docu-teller-account-enquiry.md`**
 
 Document containing:
 - Illustrated step-by-step guide
@@ -1290,9 +1279,9 @@ what criteria can be used to search for a customer in CBSA?
 What is the plan to implement customer search by email?
 ```
 
-#### ✅ Sample Result
+#### ✅ Sample Result depends on choice you made
 
-Bob creates **`docs/CBSA-plan-email-search.md`**:
+Bob creates **`bobz/implementation-plan/customer-email-search-20250522/implementation-plan.md`**:
 ```
    ## 1. Executive Summary
 
