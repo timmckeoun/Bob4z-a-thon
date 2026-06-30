@@ -1027,7 +1027,7 @@ Comment: the file should also contain other sections than "Input Validation Rule
 
 ### ✅ Prompt to Create the new rule:
 
-Open BNK1CAC.cbl in the editor. Place your cursor at the beginning of line 458 (which should be just after Bob prompt:
+Open BNK1CAC.cbl in the editor. Place your cursor at the beginning of line 458 (Ctrl G may help), then type in the Bob prompt:
 
 ```text
 base\cobol_src\BNK1CAC.cbl:458-458
